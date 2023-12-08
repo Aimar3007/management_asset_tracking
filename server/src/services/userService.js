@@ -1,4 +1,4 @@
-const { getAllUserRepository } = require('../repositories/user.repository')
+const { getAllUserRepository } = require('../repositories/userRepository')
 
 const getAllUserService = (reqPagination) => {
     return getAllUserRepository(reqPagination);

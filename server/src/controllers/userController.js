@@ -1,5 +1,5 @@
 const { paginationHelper } = require("../helper/paginationHelper");
-const { getAllUserService } = require("../services/user.service");
+const { getAllUserService } = require("../services/userService");
 let controller = {}
 
 controller.getAllUsers = async (req, res) => {
