@@ -4,6 +4,7 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    container_name: client
     ports:
       - "3000:3000"
 
@@ -11,6 +12,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    container_name: server
     ports:
       - "3001:3001"
     depends_on:
@@ -18,10 +20,11 @@ services:
 
   mysql:
     image: mysql:latest
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: aset_management
-      MYSQL_USER: aimar
-      MYSQL_PASSWORD: 12345678
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
