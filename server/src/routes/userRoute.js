@@ -1,10 +1,10 @@
 const express = require('express');
-const controllerUser = require('../controllers/userController')
-
-const {getAllUsers} = controllerUser
+const { getAllUsers, createUser } = require('../controllers/userController');
+const verifyToken  = require('../helper/jwtTokenHelper');
 
 const router = express.Router();
 
-router.get('/', getAllUsers);
+router.get('/', verifyToken, getAllUsers);
+router.post('/', createUser)
 
 module.exports = router;

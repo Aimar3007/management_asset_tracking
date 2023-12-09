@@ -8,4 +8,14 @@ const getAllUserRepository = (reqPagination) => {
   return data;
 };
 
-module.exports = { getAllUserRepository };
+const createUserRepository = (userName, email, password, roleId) => {
+  const user = User.create({ userName, email, password, roleId })
+  return user
+}
+
+const findUserByEmailRepository =  (email) => {
+  const x1 =  User.findOne({ where: { email } })
+  return x1;
+}
+
+module.exports = { getAllUserRepository, createUserRepository, findUserByEmailRepository };

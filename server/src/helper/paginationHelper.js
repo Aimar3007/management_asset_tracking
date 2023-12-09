@@ -1,7 +1,4 @@
 const paginationHelper = (countFiltered, reqPagination) => {
-  console.log(countFiltered);
-  console.log(reqPagination);
-
     let pagination = {};
     pagination.totalPage = Math.ceil(countFiltered / reqPagination.limit);
     if (reqPagination.end < countFiltered) {
@@ -18,4 +15,4 @@ const paginationHelper = (countFiltered, reqPagination) => {
     }
     return pagination
 }
-module.exports = { paginationHelper };
+module.exports =  paginationHelper;

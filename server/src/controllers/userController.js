@@ -1,10 +1,11 @@
-const { paginationHelper } = require("../helper/paginationHelper");
-const { getAllUserService } = require("../services/userService");
-let controller = {}
+const paginationHelper  = require("../helper/paginationHelper");
+const { getAllUserService, createUserService } = require("../services/userService");
 
-controller.getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   const page = parseInt(req.body.page);
   const limit = parseInt(req.body.record);
+  const x1 = req.session.userId
+  console.log('ini x1', x1);
 
   const reqPagination = {
     limit,
@@ -26,7 +27,16 @@ controller.getAllUsers = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
-
 };
 
-module.exports = controller;
+const createUser = async (req, res) => {
+  try {
+    const newUser = await createUserService(req);
+    return res.status(201).json({ message: 'User created', data: newUser });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+module.exports = { getAllUsers, createUser };
