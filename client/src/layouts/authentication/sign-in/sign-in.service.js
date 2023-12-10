@@ -28,9 +28,4 @@ const signInService = async (userData) => {
   }
 };
 
-// const logout = () => {
-//   localStorage.removeItem('token');
-//   <Navigate to="/authentication/sign-in" />
-// }
-
 export default signInService;

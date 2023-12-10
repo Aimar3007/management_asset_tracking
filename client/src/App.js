@@ -42,11 +42,11 @@ export default function App() {
     transparentSidenav,
     whiteSidenav,
     darkMode,
+    login,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [token] = useState(localStorage.getItem("token"));
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -79,8 +79,9 @@ export default function App() {
   }, [pathname]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     if (!token) navigate("/authentication/sign-in");
-  }, [token]);
+  }, []);
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {

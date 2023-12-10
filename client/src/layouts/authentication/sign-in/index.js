@@ -19,8 +19,6 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
-import { useMaterialUIController, setLogin } from "context";
-
 import loginService from "./sign-in.service";
 
 function Basic() {

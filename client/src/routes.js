@@ -11,6 +11,7 @@ import SignUp from "layouts/authentication/sign-up";
 import Icon from "@mui/material/Icon";
 
 const routes = [
+  // collapse
   {
     type: "collapse",
     name: "Dashboard",
@@ -59,8 +60,9 @@ const routes = [
     route: "/profile",
     component: <Profile />,
   },
+
+  // none collapse
   {
-    // type: "collapse",
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
@@ -68,7 +70,6 @@ const routes = [
     component: <SignIn />,
   },
   {
-    type: "collapse",
     name: "Sign Up",
     key: "sign-up",
     icon: <Icon fontSize="small">assignment</Icon>,
