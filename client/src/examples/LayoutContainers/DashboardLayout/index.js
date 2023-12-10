@@ -36,6 +36,8 @@ function DashboardLayout({ children }) {
     setLayout(dispatch, "dashboard");
   }, [pathname]);
 
+  console.log("ini controller", controller);
+
   return (
     <MDBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
