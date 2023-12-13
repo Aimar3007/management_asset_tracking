@@ -27,6 +27,12 @@ const _nav = [
     },
   },
   {
+    component: CNavItem,
+    name: 'Electronic Assets',
+    to: '/electronic-assets',
+    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+  },
+  {
     component: CNavTitle,
     name: 'Theme',
   },
