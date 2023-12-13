@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  CButton,
   CContainer,
   CDropdown,
   CDropdownItem,
@@ -12,13 +13,7 @@ import {
   useColorModes,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {
-  cilContrast,
-  cilMenu,
-  cilMoon,
-  cilSun,
-} from '@coreui/icons'
-
+import { cilContrast, cilMenu, cilMoon, cilSun } from '@coreui/icons'
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -39,6 +34,7 @@ const AppHeader = () => {
       <CContainer className="border-bottom px-4" fluid>
         <h4>Assets</h4>
         <CHeaderNav className="ms-auto">
+          <CButton color="primary">Add Asset</CButton>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>

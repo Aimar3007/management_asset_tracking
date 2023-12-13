@@ -2,20 +2,14 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
-  CCloseButton,
   CSidebar,
-  CSidebarBrand,
   CSidebarFooter,
   CSidebarHeader,
   CSidebarNav,
   CSidebarToggler,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 
 import { AppSidebarNav } from './AppSidebarNav'
-
-import { logo } from 'src/assets/brand/logo'
-import { sygnet } from 'src/assets/brand/sygnet'
 
 import SimpleBar from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
@@ -39,10 +33,7 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
-      <CSidebarHeader className="border-bottom">
-        Assets Management
-      </CSidebarHeader>
-
+      <CSidebarHeader className="border-bottom">Assets Management</CSidebarHeader>
       <CSidebarNav>
         <SimpleBar>
           <AppSidebarNav items={navigation} />
