@@ -14,10 +14,13 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilContrast, cilMenu, cilMoon, cilSun } from '@coreui/icons'
+import { useNavigate } from 'react-router-dom'
 
 const AppHeader = () => {
   const headerRef = useRef()
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
+
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
@@ -34,7 +37,9 @@ const AppHeader = () => {
       <CContainer className="border-bottom px-4" fluid>
         <h4>Assets</h4>
         <CHeaderNav className="ms-auto">
-          <CButton color="primary">Add Asset</CButton>
+          <CButton color="primary" onClick={() => navigate('/add-electronic-assets')}>
+            Add Asset
+          </CButton>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>

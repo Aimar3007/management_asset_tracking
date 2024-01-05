@@ -54,11 +54,24 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const ElectronicAssets = React.lazy(
   () => import('./views/electronic-assets/electronic-assets.component'),
 )
+const ElectronicAssetsDetail = React.lazy(
+  () =>
+    import('./views/electronic-assets/electronic-assets-detail/electronic-assets-detail.component'),
+)
+const AddElectronicAssets = React.lazy(
+  () => import('./views/electronic-assets/add-electronic-assets/add-electronic-assets.component'),
+)
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/electronic-assets', name: 'Electronic Assets', element: ElectronicAssets },
+  {
+    path: '/electronic-assets-detail/:id',
+    name: 'Electronic Assets Detail',
+    element: ElectronicAssetsDetail,
+  },
+  { path: '/add-electronic-assets', name: 'Add Electronic Assets', element: AddElectronicAssets },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

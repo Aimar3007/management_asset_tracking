@@ -11,8 +11,10 @@ import { CFormInput } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import Table from '../components/table/table.component'
+import { useNavigate } from 'react-router-dom'
 
 const ElectronicAssetsPage = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <div className="card px-3" style={{ height: '65px' }}>
@@ -33,7 +35,14 @@ const ElectronicAssetsPage = () => {
         </div>
       </div>
       <div className="card mt-2">
-        <Table data={dataElectronic} header={dataHeaderElectronic} />
+        <Table
+          data={dataElectronic}
+          header={dataHeaderElectronic}
+          rowOnclick={(data) => {
+            const id = data.id
+            navigate('/electronic-assets-detail/' + id)
+          }}
+        />
       </div>
     </div>
   )

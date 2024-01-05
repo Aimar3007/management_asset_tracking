@@ -15,45 +15,38 @@ export const dataHeaderElectronic = [
     accessor: 'brand',
   },
   {
+    label: 'Serial Number',
+    accessor: 'serialNumber',
+  },
+  {
     label: 'Condition',
     accessor: 'condition',
-  },
-  {
-    label: 'User',
-    accessor: 'user',
-  },
-  {
-    label: 'Note',
-    accessor: 'note',
-  },
-  {
-    label: 'City',
-    accessor: 'city',
   },
   {
     label: 'Purchase Date',
     accessor: 'purchaseDate',
   },
   {
-    label: 'Image',
-    accessor: 'image',
+    label: 'City',
+    accessor: 'city',
   },
   {
-    label: 'Serial Number',
-    accessor: 'serialNumber',
-  },
-  {
-    label: 'Repair History',
-    accessor: 'Repair History',
+    label: 'User',
+    accessor: 'user',
   },
   {
     label: 'Last Date of Repair',
     accessor: 'lastDateofRepair',
   },
+  {
+    label: 'Previous user',
+    accessor: 'previousUser',
+  },
 ]
 
 export const dataElectronic = [
   {
+    id: 1,
     name: 'Laptop',
     description: 'Ideapad gaming 3',
     brand: 'Lenovo',
@@ -67,6 +60,7 @@ export const dataElectronic = [
     lastDateofRepair: '',
   },
   {
+    id: 2,
     name: 'Laptop',
     description: 'Ideapad gaming 3',
     brand: 'Lenovo',
@@ -80,6 +74,7 @@ export const dataElectronic = [
     lastDateofRepair: '',
   },
   {
+    id: 3,
     name: 'Laptop',
     description: 'Asus Vivobook 14',
     brand: 'Asus',

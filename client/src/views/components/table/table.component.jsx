@@ -9,7 +9,7 @@ import {
 } from '@coreui/react'
 import Pagination from '../pagination/pagination.component'
 
-const Table = ({ data, header }) => {
+const Table = ({ data, header, rowOnclick }) => {
   return (
     <div className="px-2">
       <CTable striped hover>
@@ -24,7 +24,12 @@ const Table = ({ data, header }) => {
           {data.map((item, idx) => (
             <CTableRow key={idx}>
               {header.map((item2, idx2) => (
-                <CTableDataCell key={idx2}>
+                <CTableDataCell
+                  key={idx2}
+                  onClick={() => {
+                    rowOnclick(item)
+                  }}
+                >
                   {item[item2.accessor] === null ||
                   item[item2.accessor] === undefined ||
                   item[item2.accessor] === ''
