@@ -4,7 +4,14 @@
     "password": "12345678",
     "database": "aset_management",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "timestamps": true,
+      "createdAt": "createdAt",
+      "updatedAt": "updatedAt",
+      "createdBy": "createdBy",
+      "updatedBy": "updatedBy"
+    }
   },
   "test": {
     "username": "root",

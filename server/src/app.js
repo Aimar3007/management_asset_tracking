@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoute');
 const auth = require('./routes/authRoute');
+const electronicAssets = require('./routes/electronicAssetsRoute')
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const app = express();
 const port = 3001;
 
 app.use(session({
-  secret: 'secret-key', // Ganti dengan secret yang lebih aman
+  secret: 'secret-key',
   resave: false,
   saveUninitialized: true
 }));
@@ -23,6 +24,7 @@ app.use(cors());
 // Menggunakan rute dari userRoutes
 app.use('/user', userRoutes);
 app.use('/auth', auth);
+app.use('/electronic-assets', electronicAssets);
 
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);

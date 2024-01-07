@@ -7,17 +7,14 @@ module.exports = {
       {
         type: "super-admin",
         createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         type: "admin",
         createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         type: "regular",
         createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]);
   },

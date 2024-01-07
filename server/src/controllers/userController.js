@@ -5,8 +5,6 @@ const getAllUsers = async (req, res) => {
   const page = parseInt(req.body.page);
   const limit = parseInt(req.body.record);
   const x1 = req.session.userId
-  console.log('ini x1', x1);
-
   const reqPagination = {
     limit,
     page,
