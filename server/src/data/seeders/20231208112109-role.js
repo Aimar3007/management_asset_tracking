@@ -5,10 +5,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("Roles", [
       {
-        type: "super-admin",
-        createdAt: new Date(),
-      },
-      {
         type: "admin",
         createdAt: new Date(),
       },

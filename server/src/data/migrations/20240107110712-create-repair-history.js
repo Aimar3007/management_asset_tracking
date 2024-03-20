@@ -12,7 +12,7 @@ module.exports = {
       assetsId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "ElectronicAssets",
+          model: "Assets",
           key: "id",
         },
         onUpdate: "CASCADE",
@@ -20,6 +20,9 @@ module.exports = {
       },
       description: {
         type: Sequelize.STRING,
+      },
+      dateOfRepair: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,

@@ -15,6 +15,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilContrast, cilMenu, cilMoon, cilSun } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom'
+import { AppHeaderDropdown } from './header'
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -86,7 +87,7 @@ const AppHeader = () => {
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
-          {/* <AppHeaderDropdown /> */}
+          <AppHeaderDropdown />
           <CHeaderToggler
             onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
             style={{ marginInlineStart: '-14px' }}

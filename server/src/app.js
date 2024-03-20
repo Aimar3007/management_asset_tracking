@@ -5,7 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoute');
 const auth = require('./routes/authRoute');
-const electronicAssets = require('./routes/electronicAssetsRoute')
+const assets = require('./routes/assetsRoute')
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ app.use(cors());
 // Menggunakan rute dari userRoutes
 app.use('/user', userRoutes);
 app.use('/auth', auth);
-app.use('/electronic-assets', electronicAssets);
+app.use('/assets', assets);
 
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);

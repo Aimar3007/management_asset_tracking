@@ -1,40 +1,69 @@
-const paginationHelper  = require("../helper/paginationHelper");
-const { getAllUserService, createUserService } = require("../services/userService");
+const paginationHelper = require("../helper/paginationHelper");
+const {
+  getAllUserService,
+  createUserService,
+  getUserByIdService,
+} = require("../services/userService");
 
 const getAllUsers = async (req, res) => {
-  const page = parseInt(req.body.page);
-  const limit = parseInt(req.body.record);
-  const x1 = req.session.userId
-  const reqPagination = {
-    limit,
-    page,
-    start: (page - 1) * limit,
-    end: page * limit,
-  };
+  try {
+    const getData = await getAllUserService(req);
+    const pagination = paginationHelper(getData.count, getData.reqPagination);
+    const response = {
+      pagination,
+      data: getData.rows,
+      isSuccess: true,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
+  }
+};
+
+const getUsersByPk = async (req, res) => {
+  const id = parseInt(req.body.id);
 
   try {
-    const getDataUser =  await getAllUserService(reqPagination)
-    const pagination  = paginationHelper(getDataUser.count, reqPagination)
+    const getData = await getUserByIdService(id);
+    const response = {
+      data: getData,
+      isSuccess:true
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
+  }
+};
+
+
+const getCurrentUser = async (req, res) => {
+  const id = req.session.userId;
+  try {
+    const getDataUser = await getUserByIdService(id);
     const data = {
-      status: 200,
-      pagination,
-      data:getDataUser.rows,
+      data: getDataUser,
     };
     res.status(200).json(data);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
   }
 };
 
 const createUser = async (req, res) => {
   try {
     const newUser = await createUserService(req);
-    return res.status(201).json({ message: 'User created', data: newUser });
+    return res.status(201).json({ message: "User created", data: newUser });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
   }
-}
+};
 
-module.exports = { getAllUsers, createUser };
+module.exports = { getAllUsers, createUser, getCurrentUser, getUsersByPk };
