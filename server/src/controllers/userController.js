@@ -3,6 +3,7 @@ const {
   getAllUserService,
   createUserService,
   getUserByIdService,
+  updateUserService,
 } = require("../services/userService");
 
 const getAllUsers = async (req, res) => {
@@ -29,7 +30,7 @@ const getUsersByPk = async (req, res) => {
     const getData = await getUserByIdService(id);
     const response = {
       data: getData,
-      isSuccess:true
+      isSuccess: true,
     };
     res.status(200).json(response);
   } catch (error) {
@@ -38,7 +39,6 @@ const getUsersByPk = async (req, res) => {
     res.status(500).json(response);
   }
 };
-
 
 const getCurrentUser = async (req, res) => {
   const id = req.session.userId;
@@ -66,4 +66,16 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, createUser, getCurrentUser, getUsersByPk };
+const updateUser = async (req, res) => {
+  try {
+    const updateData = await updateUserService(req);
+    const response = { message: "User created", data: updateData };
+    return res.status(201).json(response);
+  } catch (error) {
+    console.error(error);
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
+  }
+};
+
+module.exports = { getAllUsers, createUser, getCurrentUser, getUsersByPk, updateUser };

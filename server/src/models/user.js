@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 
-const PROTECTED_ATTRIBUTES = ["password",];
+const PROTECTED_ATTRIBUTES = ["password"];
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -29,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       roleId: DataTypes.INTEGER,
       city: DataTypes.STRING,
-      status: DataTypes.STRING,
       password: DataTypes.STRING,
       deletedAt: DataTypes.DATE,
     },

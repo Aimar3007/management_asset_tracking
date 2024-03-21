@@ -45,9 +45,16 @@ const getUserByIdRepository = async (id) => {
   return response;
 };
 
+const updateDataRepository = async (id, data) => {
+  const findDataById = await getUserByIdRepository(id);
+  const updateData = await findDataById.update(data);
+  return updateData;
+};
+
 module.exports = {
   getAllUserRepository,
   createUserRepository,
   findUserByEmailRepository,
   getUserByIdRepository,
+  updateDataRepository,
 };

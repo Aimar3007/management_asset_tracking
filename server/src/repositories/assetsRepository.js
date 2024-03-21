@@ -34,10 +34,9 @@ const createAssetsRepository = (data) => {
   return Assets.create(data);
 };
 
-const updateAssetsRepository = (data) => {
-  return Assets.update(data.dataValues, {
-    where: { id: data.dataValues.id },
-  });
+const updateAssetsRepository = async (id, data) => {
+  const finDataAsset = await getAssetsByPkRepository(id);
+  return finDataAsset.update(data);
 };
 
 module.exports = {

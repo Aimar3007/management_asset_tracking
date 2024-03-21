@@ -12,7 +12,7 @@ const getAllAssets = async (req, res) => {
     const getData = await getAllAssetsService(req);
     const pagination = paginationHelper(getData.count, getData.reqPagination);
     const response = {
-      data: response.rows,
+      data: getData.rows,
       pagination,
       isSuccess: true,
     };

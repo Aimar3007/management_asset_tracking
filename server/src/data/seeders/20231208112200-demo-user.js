@@ -12,7 +12,6 @@ module.exports = {
         password: await bcrypt.hash("123", 10),
         roleId: 1,
         city: "Batam",
-        status: "active",
         createdAt: new Date(),
       },
       {
@@ -22,7 +21,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Aimar Penanda",
@@ -31,7 +29,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Aleandro",
@@ -40,7 +37,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Huda",
@@ -49,7 +45,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Zef",
@@ -65,7 +60,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Hanjar",
@@ -74,7 +68,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Julia",
@@ -83,7 +76,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Dheolina",
@@ -92,7 +84,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Dinda",
@@ -101,7 +92,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Yurike",
@@ -110,7 +100,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Gina",
@@ -119,7 +108,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Marvin",
@@ -128,7 +116,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Afandi",
@@ -137,7 +124,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Batam",
-        status: "active",
       },
       {
         userName: "Trifaldi",
@@ -146,7 +132,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Bali",
-        status: "active",
       },
       {
         userName: "Lucas",
@@ -155,7 +140,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Bali",
-        status: "active",
       },
       {
         userName: "Aryo",
@@ -164,7 +148,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Bali",
-        status: "active",
       },
       {
         userName: "Natan",
@@ -173,7 +156,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Bali",
-        status: "active",
       },
       {
         userName: "Daiki",
@@ -182,7 +164,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Bali",
-        status: "active",
       },
       {
         userName: "Ari",
@@ -191,7 +172,6 @@ module.exports = {
         roleId: 2,
         createdAt: new Date(),
         city: "Bali",
-        status: "active",
       },
     ]);
   },

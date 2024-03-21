@@ -3,7 +3,6 @@ const {
   getAssetsByPkRepository,
   createAssetsRepository,
   updateAssetsRepository,
-  // deleteAssetsRepository,
 } = require("../repositories/assetsRepository");
 
 const getAllAssetsService = async (req) => {
@@ -20,8 +19,8 @@ const getAllAssetsService = async (req) => {
     Object.entries(filter).filter(([_, value]) => value && value)
   );
 
-  const search = req.body.description
-    
+  const search = req.body.description;
+
   const reqPagination = {
     limit,
     page,
@@ -41,7 +40,7 @@ const getAllAssetsByPkService = async (id) => {
 
 const createAssetsService = async (req) => {
   const data = {
-    name: req.body.namem,
+    name: req.body.name,
     description: req.body.description,
     brand: req.body.brand,
     serialNumber: req.body.serialNumber,
@@ -62,23 +61,29 @@ const createAssetsService = async (req) => {
 };
 
 const updateAssetsService = async (req) => {
-  const previousData = await getAssetsByPkRepository(req.body.id);
-  previousData.name = req.body.name;
-  previousData.description = req.body.description;
-  previousData.brand = req.body.brand;
-  previousData.serialNumber = req.body.serialNumber;
-  previousData.condition = req.body.condition;
-  previousData.purchaseDate = req.body.purchaseDate;
-  previousData.userId = req.body.userId;
-  previousData.city = req.body.city;
-  previousData.previousUserId = req.body.previousUserId;
-  previousData.notes = req.body.notes;
-  previousData.lastDateOfRepair = req.body.lastDateOfRepair;
-  previousData.image = req.body.image;
-  previousData.updatedAt = new Date();
-  // previousData.updatedBy = req.body.updatedBy;
+  const id = req.body.id;
+  let data = {
+    name: req.body.name,
+    description: req.body.description,
+    brand: req.body.brand,
+    serialNumber: req.body.serialNumber,
+    condition: req.body.condition,
+    purchaseDate: req.body.purchaseDate,
+    userId: req.body.userId,
+    city: req.body.city,
+    previousUserId: req.body.previousUserId,
+    notes: req.body.notes,
+    lastDateOfRepair: req.body.lastDateOfRepair,
+    image: req.body.image,
+    updatedAt: new Date(),
+  };
+  
+  // Remove key-value pairs with empty values
+  data = Object.fromEntries(
+    Object.entries(data).filter(([_, value]) => value && value)
+  );
 
-  return updateAssetsRepository(previousData);
+  return updateAssetsRepository(id, data);
 };
 
 const deleteAssetsService = async (req) => {
