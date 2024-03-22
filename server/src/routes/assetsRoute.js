@@ -9,10 +9,10 @@ const {
 
 const router = express.Router();
 
-router.get("/", getAllAssets);
+router.post("/", getAllAssets);
 router.get("/details", getAssetsByPk);
-router.post("/", createAssets);
-router.put("/", updateAssets);
+router.post("/create", createAssets);
+router.put("", updateAssets);
 router.delete("/", deleteAssets);
 
 module.exports = router;

@@ -11,6 +11,16 @@ const getAllAssetsRepository = (reqPagination, search, filter) => {
       }),
       ...(filter && filter),
     },
+    include: [
+      {
+        model: User,
+        as: "user", // Mengacu pada alias yang ditentukan dalam asosiasi
+      },
+      {
+        model: User,
+        as: "previousUser", // Mengacu pada alias yang ditentukan dalam asosiasi
+      },
+    ],
   });
   return data;
 };
