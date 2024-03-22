@@ -1,0 +1,89 @@
+.error-container {
+    @apply h-full flex flex-col justify-center items-center bg-white;
+}
+
+.table-container {
+    @apply relative overflow-auto w-full;
+
+    /* height */
+    /* @apply h-[calc(100vh-230px)]; */
+}
+
+.table-component .dropdown label {
+    @apply text-size-M;
+}
+
+.table-row {
+    @apply relative my-2 overflow-auto w-max h-[calc(100vh-170px)] rounded bg-white;
+}
+
+.table-master {
+    @apply w-full;
+}
+
+.thead-master {
+    @apply w-[calc(100vw-1em)] h-10  bg-gray-50;
+}
+
+.thead-master .tr-master {
+    @apply border-b;
+}
+
+.th-master:first-child,
+.td-master:first-child {
+    @apply pl-5;
+}
+.td-master {
+    @apply px-2 py-2 bg-white border-b whitespace-nowrap;
+}
+
+.tr-master {
+    @apply bg-white border-b hover:bg-gray-200 transition;
+}
+.tr-master:hover {
+    .td-master {
+        @apply bg-gray-200;
+    }
+}
+
+.tr-selected {
+    .td-master {
+        @apply bg-[#b8ecff];
+    }
+}
+.tr-selected:hover {
+    .td-master {
+        @apply bg-[#a1e4fc];
+    }
+}
+
+.th-master {
+    @apply text-left px-2 my-4 sticky top-0 font-medium whitespace-nowrap bg-white;
+}
+
+.th-master div {
+    @apply h-5 flex flex-row items-center  text-logistical-gray-ver1;
+}
+
+.edit-rename-column {
+    @apply right-0 text-right;
+}
+
+.sort-button {
+    @apply flex flex-col  border-solid border-2 rounded-logistical-radius-2 ml-1 w-5 h-5;
+}
+
+.sort-button i {
+    @apply aspect-square text-logistical-gray-ver1 text-size-M font-bold -translate-x-1 -translate-y-1;
+}
+
+.sort-active {
+    @apply !text-logistical-blue-ver2;
+}
+
+/* checkbox sticky */
+.sticky-column {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}

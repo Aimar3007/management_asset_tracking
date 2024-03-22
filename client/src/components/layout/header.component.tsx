@@ -12,7 +12,7 @@ import {
 import { useOutsideClickHandling } from 'common/common.service'
 import { logoutAction } from 'pages/login/login.slice'
 import { userDataSelector as sessionSelector } from 'pages/login/login.slice'
-import { IUserAuth } from 'repository/data/user-auth.interface'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
 import { useSelector } from 'react-redux'
 import AvatarCircle from 'components/avatar-circle/avatar-circle.component'
 export default function Header(): React.ReactElement {

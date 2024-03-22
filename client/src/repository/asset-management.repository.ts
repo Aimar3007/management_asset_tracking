@@ -2,7 +2,7 @@ import { post } from 'common/common.service'
 import {
     IAssetManagement,
     IAssetManagementPayload,
-} from './data/asset-management-data.interface'
+} from './interface/asset-management-data.interface'
 import { IResponseData } from 'common/common.interface'
 import { endpoints } from 'common/common.static'
 

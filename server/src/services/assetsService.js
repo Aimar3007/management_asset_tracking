@@ -22,10 +22,9 @@ const getAllAssetsService = async (req) => {
   const search = req.body.description;
 
   const reqPagination = {
-    limit,
     page,
-    start: (page - 1) * limit,
-    end: page * limit,
+    limit,
+    offset: (page - 1) * limit,
   };
 
   const getData = await getAllAssetsRepository(reqPagination, search, filter);
@@ -77,7 +76,7 @@ const updateAssetsService = async (req) => {
     image: req.body.image,
     updatedAt: new Date(),
   };
-  
+
   // Remove key-value pairs with empty values
   data = Object.fromEntries(
     Object.entries(data).filter(([_, value]) => value && value)

@@ -2,7 +2,7 @@
 import { ILoginValidation } from 'form-validation/login.validation'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { forgotPassword, postLogin } from 'repository/user.repository'
+import {  postLogin } from 'repository/user.repository'
 import { useAppDispatch } from 'store'
 import { setLoginData } from './login.slice'
 import { IForgotPassword } from 'form-validation/forgot-password.validation'
@@ -55,7 +55,7 @@ export const useForgotPassword = () => {
     // add function (can more than one)
     const submitForgotPassword = async (values: IForgotPassword) => {
         try {
-            const action = await forgotPassword(values)
+            // const action = await forgotPassword(values)
 
             Toast({
                 header: 'Success',

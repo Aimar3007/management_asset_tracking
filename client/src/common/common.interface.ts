@@ -22,8 +22,7 @@ export interface IFetchOptions {
 
 export interface IPost<T> {
     endpoint: string
-    payload?: T
-    params?: T
+    payload: T
     isFormData?: boolean
 }
 
@@ -46,61 +45,16 @@ export interface IRoute {
 export interface IResponseData<T> {
     message: string
     data: T
-    search?: string
     isSuccess?: boolean
     meta: IMeta
-    links: IMetaLinks
-    additionals: any
-    errors?: any
-    pagination: IPagination
-}
-
-export interface IPagination {
-    totalPage: number
-    next?: {
-        page: number
-        limit: number
-    }
-    prev?: {
-        page: number
-        limit: number
-    }
 }
 
 export interface IMeta {
-    current_page: number
-    last_page: number
-    per_page: number
-    total_page: number
-    total_Items?: number
-    from: number
-    to: number
-    index_end: number
-    index_start: number
-}
-export interface IMetaLinks {
-    next_page: string | null
-    previous_page: string | null
-    first_page: string | null
-    last_page: string | null
-}
-
-export interface ITableTabs {
-    header: string
-    body: number
-    className: string
-}
-
-export interface IAdditionals {
-    stats: [
-        {
-            status: string
-            count: number
-            childStatus?: [{ status: string; count: number }]
-        },
-    ]
-}
-export interface IAdditionalss {
-    status: string
-    count: number
+    currentPage: number
+    lastPage: number
+    perPage: number
+    totalPage: number
+    totalItems?: number
+    indexEnd: number
+    indexStart: number
 }

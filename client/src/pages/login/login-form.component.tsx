@@ -11,7 +11,7 @@ import { Form, Formik } from 'formik'
 import { useLogin } from './login.service'
 import { removeSessionMessage, userDataSelector } from './login.slice'
 import { useSelector } from 'react-redux'
-import { IUserAuth } from 'repository/data/user-auth.interface'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
 import { useDispatch } from 'react-redux'
 const LoginForm = () => {
     const dispatch = useDispatch()

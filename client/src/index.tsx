@@ -9,7 +9,6 @@ import 'remixicon/fonts/remixicon.css'
 import { IRoute } from './common/common.interface'
 import { routes } from './common/common.static'
 import Login from 'pages/login/login-page.component'
-import ResetPassword from 'pages/reset-password/reset-password-page.component'
 import Page404 from 'pages/404-page/404-page.component'
 import { isAccessible } from 'common/common.service'
 import { ToastContainer } from 'react-toastify'
@@ -22,10 +21,6 @@ root.render(
             <HashRouter>
                 <Routes>
                     <Route path="/login" element={<Login />} />
-                    <Route
-                        path="/change-password"
-                        element={<ResetPassword />}
-                    />
                     <Route path="/*" element={<Page404 />} />
                     <Route element={<App />}>
                         {routes.map(

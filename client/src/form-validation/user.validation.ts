@@ -1,7 +1,7 @@
-import { IRoleModule } from 'repository/data/role-module.interface'
+import { IRoleModule } from 'repository/interface/role-module.interface'
 import * as YUP from 'yup'
 import { requiredMessage } from './validation-message.static'
-import { IRoleAccess } from 'repository/data/role.interface'
+import { IRoleAccess } from 'repository/interface/role.interface'
 
 export interface IFRole {
     id?: string

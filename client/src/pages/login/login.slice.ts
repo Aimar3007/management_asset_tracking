@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUserAuth } from 'repository/data/user-auth.interface'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
 import { RootState, store } from 'store'
 const initialState: IUserAuth = {
     id: '',

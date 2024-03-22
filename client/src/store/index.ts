@@ -7,20 +7,12 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import storage from 'redux-persist/lib/storage'
 import commonReducer from 'common/common.slice'
 import loginReducer from '../pages/login/login.slice'
-import userReducer from '../pages/user-acces/user-access.slice'
-import poReducer from '../pages/purchase-order/purchase-order.slice'
-import shipmentsReducer from '../pages/shipments/shipments.slice'
 import assetManagementReducer from '../pages/asset-management/asset-management.slice'
-import attachPoReducer from '../pages/shipments/attach-po/attach-po.slice'
 import storeReducer from '../store/slice'
 
 const rootReducer = combineReducers({
     common: commonReducer,
     login: loginReducer,
-    user: userReducer,
-    purchaseOrder: poReducer,
-    shipment: shipmentsReducer,
-    attachPo: attachPoReducer,
     assetManagement: assetManagementReducer,
     storeReducer,
 })

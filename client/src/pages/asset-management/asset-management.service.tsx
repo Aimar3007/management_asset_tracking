@@ -1,23 +1,32 @@
 import { useSelector } from 'react-redux'
 import {
+    AMMetaSelector,
+    assetManagementDataSelector,
     filterSelector,
     payloadSelector,
     setData,
     setFilter,
+    setPageNumber,
     setPayload,
 } from './asset-management.slice'
 import { useFormik } from 'formik'
 import { useAppDispatch } from 'store'
 import { IDropdownItem } from 'components/dropdown/dropdown.interface'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getAssetsData } from 'repository/asset-management.repository'
+import { IAssetManagement } from 'repository/interface/asset-management-data.interface'
+import { useNavigate } from 'react-router-dom'
+import { IResponseData } from 'common/common.interface'
 
 const useAssetManagement = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     // selector
     const filter = useSelector(filterSelector)
     const payload = useSelector(payloadSelector)
+    const AMData = useSelector(assetManagementDataSelector)
+    const AMMeta = useSelector(AMMetaSelector)
 
     // state
     const [loading, setLoading] = useState<boolean>(false)
@@ -44,6 +53,10 @@ const useAssetManagement = () => {
         },
     })
 
+    useEffect(() => {
+        loadData()
+    }, [])
+
     const setValuFilter = ({
         brand,
         name,
@@ -67,20 +80,35 @@ const useAssetManagement = () => {
         }
     }
 
-    // const loadData = async () => {
-    //     try {
-    //         setLoading(true)
-    //         const actionResult = await getAssetsData(payload)
-    //         dispatch(setData(actionResult))
-    //         setLoading(false)
-    //     } catch (e) {
-    //         setLoading(false)
-    //         const errorMessage = typeof e !== 'string' ? 'Something wrong' : e
-    //         console.log(errorMessage)
-    //     }
-    // }
+    const loadData = async () => {
+        try {
+            setLoading(true)
+            const actionResult = (await getAssetsData(
+                payload,
+            )) as IResponseData<IAssetManagement[]>
+            dispatch(setData(actionResult))
+            setLoading(false)
+        } catch (e) {
+            setLoading(false)
+            const errorMessage = typeof e !== 'string' ? 'Something wrong' : e
+            console.log(errorMessage)
+        }
+    }
 
-    return { filter, formik, loading, setValuFilter }
+    const setPageData = (pageNumber: number) => {
+        dispatch(setPageNumber(pageNumber))
+    }
+
+    return {
+        filter,
+        formik,
+        loading,
+        AMData,
+        AMMeta,
+        setValuFilter,
+        setPageData,
+        navigate,
+    }
 }
 
 export default useAssetManagement

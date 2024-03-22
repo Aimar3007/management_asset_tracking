@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { Outlet } from 'react-router'
 import './components/layout/layout.style.css'
 import { useAxios } from 'common/hooks'
-import { IUserAuth } from 'repository/data/user-auth.interface'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
 import { userDataSelector } from 'pages/login/login.slice'
 import { useSelector } from 'react-redux'
 

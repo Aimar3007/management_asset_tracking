@@ -4,8 +4,8 @@ import { userDataSelector } from 'pages/login/login.slice'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { IUserAuth } from 'repository/data/user-auth.interface'
-import { getUserCurrent } from 'repository/user.repository'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
+// import { getUserCurrent } from 'repository/user.repository'
 
 export const useAxios = () => {
     const dispatch = useDispatch()
@@ -33,14 +33,14 @@ export const useAxios = () => {
         )
     }
 
-    const checkSession = async () => {
-        await getUserCurrent()
-    }
+    // const checkSession = async () => {
+    //     await getUserCurrent()
+    // }
 
-    // check session
-    useEffect(() => {
-        checkSession()
-    }, [])
+    // // check session
+    // useEffect(() => {
+    //     checkSession()
+    // }, [])
 
     // handling session
     useEffect(() => {

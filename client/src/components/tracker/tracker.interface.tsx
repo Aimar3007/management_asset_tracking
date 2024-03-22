@@ -1,10 +1,16 @@
-import { IHistories } from 'pages/purchase-order/purchase-order-detail/purchase-order-detail.interface'
-
 export interface ITracker {
     icon?: string
     bgColor?: 'blue' | 'white'
     statusIcon: any
-    data: IHistories[]
+    data: ITrackerData[]
     headers: any
     isLoading?: boolean
+}
+
+export interface ITrackerData {
+    id: string
+    title: string
+    description: string
+    byUserName: string
+    at: string
 }

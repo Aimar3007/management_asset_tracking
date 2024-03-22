@@ -1,23 +1,29 @@
-import { IPagination, IResponseData } from 'common/common.interface'
 import { IAssetManagementFilter } from './asset-management.interface'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from 'store'
 import {
     IAssetManagement,
     IAssetManagementPayload,
-} from 'repository/data/asset-management-data.interface'
+} from 'repository/interface/asset-management-data.interface'
+import { IMeta, IResponseData } from 'common/common.interface'
 
 interface IAssetManagementSlice {
     data: IAssetManagement[]
     payload: IAssetManagementPayload
     filter: IAssetManagementFilter
-    pagination: IPagination
+    meta: IMeta
 }
 
 const initialState: IAssetManagementSlice = {
     data: [],
-    pagination: {
+    meta: {
+        currentPage: 0,
+        lastPage: 0,
+        perPage: 0,
         totalPage: 0,
+        totalItems: 0,
+        indexEnd: 0,
+        indexStart: 0,
     },
     payload: {
         page: 1,
@@ -39,9 +45,8 @@ const assetManagementSlice = createSlice({
             state,
             action: PayloadAction<IResponseData<IAssetManagement[]>>,
         ) {
-            const { data, links, isSuccess, message, meta, pagination } =
-                action.payload
-            const d = { data, links, isSuccess, message, meta, pagination }
+            const { data, isSuccess, message, meta } = action.payload
+            const d = { data, isSuccess, message, meta }
             return {
                 ...state,
                 ...d,
@@ -61,6 +66,14 @@ const assetManagementSlice = createSlice({
                 payload,
             }
         },
+        setPageNumber(state, action: PayloadAction<number>) {
+            const page = action.payload
+            const payload = { ...state.payload, page }
+            return {
+                ...state,
+                payload,
+            }
+        },
     },
 })
 
@@ -71,11 +84,12 @@ export const filterSelector = (state: RootState) =>
     state.assetManagement.filter || {}
 export const payloadSelector = (state: RootState) =>
     state.assetManagement.payload || {}
-export const assetManagementPaginationSelector = (state: RootState) =>
-    state.assetManagement.pagination || {}
+export const AMMetaSelector = (state: RootState) =>
+    state.assetManagement.meta || {}
 
 // all actions
-export const { setData, setPayload, setFilter } = assetManagementSlice.actions
+export const { setData, setPayload, setFilter, setPageNumber } =
+    assetManagementSlice.actions
 
 // Reducer
 export default assetManagementSlice.reducer

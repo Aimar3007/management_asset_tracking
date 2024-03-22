@@ -1,8 +1,8 @@
 import { IRoute } from 'common/common.interface'
 import { routes } from 'common/common.static'
 import { IBreadcrumbButton, IBreadcrumbSearch } from './bread-crumb.interface'
-import { useDispatch } from 'react-redux'
-import { setFilterSearchUser } from 'pages/user-acces/user-access.slice'
+// import { useDispatch } from 'react-redux'
+// import { setFilterSearchUser } from 'pages/user-acces/user-access.slice'
 
 const breadCrumbButtonName: IBreadcrumbButton[] = [
     {
@@ -43,7 +43,7 @@ const flattenArray = (inputArray: IRoute[]) => {
 }
 
 export const useBreadCrumb = (currentPath: string) => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const flattedArray = flattenArray(routes)
     const emptyRoute: IRoute = { path: 'unknown', text: 'unknown' }
 
@@ -73,11 +73,11 @@ export const useBreadCrumb = (currentPath: string) => {
     let searchFunction = (searchString: string | null) => {
         console.log(searchString)
     }
-    if (route.path === 'user') {
-        searchFunction = (searchString) => {
-            dispatch(setFilterSearchUser(searchString ?? ''))
-        }
-    }
+    // if (route.path === 'user') {
+    //     searchFunction = (searchString) => {
+    //         dispatch(setFilterSearchUser(searchString ?? ''))
+    //     }
+    // }
 
     return { route, buttonCreate, searchBar, searchFunction }
 }

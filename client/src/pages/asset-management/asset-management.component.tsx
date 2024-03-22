@@ -1,13 +1,24 @@
 import Dropdown from 'components/dropdown/dropdown.component'
-import { assetNameOptions } from './asset-management.static'
+import { AMHeader, assetNameOptions } from './asset-management.static'
 import useAssetManagement from './asset-management.service'
 import { FormikProvider } from 'formik'
 import Tooltip from 'components/tooltip/tooltip.component'
 import FormInput from 'components/form-input/form-input.component'
 import { IDropdownItem } from 'components/dropdown/dropdown.interface'
+import { IAssetManagement } from 'repository/interface/asset-management-data.interface'
+import Table from 'components/table2/table.component'
 
 const AssetManagement = () => {
-    const { filter, formik, setValuFilter } = useAssetManagement()
+    const {
+        filter,
+        formik,
+        AMData,
+        loading,
+        AMMeta,
+        setValuFilter,
+        setPageData,
+        navigate,
+    } = useAssetManagement()
 
     return (
         <div className="purchase-order container-global content-full-height flex">
@@ -92,6 +103,61 @@ const AssetManagement = () => {
                 <div className="border-b border-solid border-logistical-gray-ver3"></div>
 
                 {/* table */}
+                <Table<IAssetManagement>
+                    headers={AMHeader}
+                    data={AMData}
+                    loading={loading}
+                    nextHandling={(page) => {
+                        setPageData(page)
+                    }}
+                    previousHandling={(page) => {
+                        setPageData(page)
+                    }}
+                    meta={AMMeta}
+                    moduleTitle={'Asset Management'}
+                    onRowClick={function (data): void {
+                        const id = data.id
+                        navigate('/purchase-order-detail/' + id)
+                    }}
+                    // checkboxVisible={
+                    //     organization === 'pan' &&
+                    //     tabFilter?.value === 'Canceled'
+                    //         ? true
+                    //         : false
+                    // }
+                    // checkboxDataHandling={(data: IPurchaseOrder[]) => {
+                    //     setSelectedPo(data)
+                    // }}
+                    // tabFilterItem={tabFilter}
+                    // enableExport={true}
+                    // additionalButtonBottom={
+                    //     organization === 'pan' &&
+                    //     tabFilter?.value === 'Canceled' ? (
+                    //         <>
+                    //             <Button
+                    //                 isDisabled={
+                    //                     selectedPo?.length < 1 ? true : false
+                    //                 }
+                    //                 className={`w-btnSmallWidth ml-2 mr-2 !pl-2 !pr-2`}
+                    //                 variant="logistical-darkblue"
+                    //                 label="RE-OPEN PO"
+                    //                 type="button"
+                    //                 onClick={() => {
+                    //                     poBulkStatusModalService.openModalHandling()
+                    //                 }}
+                    //             />
+                    //         </>
+                    //     ) : undefined
+                    // }
+                    // containerClassname={'overflow-auto'}
+                    // modalService={poGenerateReportModalService}
+                    // components={componentFilter}
+                    // resetFilter={resetFilterGenerateReport}
+                    // getDataGenerate={getDataGenerate}
+                    // removeFilter={removeTemporyFilter2}
+                    // generateReportData={generateReportData}
+                    // GenerateReportHeaders={POGenerateReportHeader}
+                />
             </div>
         </div>
     )

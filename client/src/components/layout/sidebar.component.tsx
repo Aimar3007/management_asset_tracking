@@ -15,7 +15,7 @@ import './layout.style.css'
 import { isAccessible } from 'common/common.service'
 import { useSelector } from 'react-redux'
 import { classNameSelector } from 'store/slice'
-import { IUserAuth } from 'repository/data/user-auth.interface'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
 import { userDataSelector as sessionSelector } from 'pages/login/login.slice'
 
 interface ISidebar {

@@ -4,7 +4,7 @@ const { Assets, User } = require("../models");
 const getAllAssetsRepository = (reqPagination, search, filter) => {
   const data = Assets.findAndCountAll({
     offset: reqPagination.start,
-    limit: reqPagination.limoiit,
+    limit: reqPagination.limit,
     where: {
       ...(search && {
         description: { [Op.substring]: search },

@@ -1,18 +1,16 @@
-const paginationHelper = (countFiltered, reqPagination) => {
-  let pagination = {};
-  pagination.totalPage = Math.ceil(countFiltered / reqPagination.limit);
-  if (reqPagination.end < countFiltered) {
-    pagination.next = {
-      page: reqPagination.page + 1,
-      limit: reqPagination.limit,
-    };
-  }
-  if (reqPagination.start > 0) {
-    pagination.prev = {
-      page: reqPagination.page - 1,
-      limit: reqPagination.limit,
-    };
-  }
-  return pagination;
+const paginationHelper = (getData) => {
+  const { count, reqPagination } = getData;
+
+  const meta = {
+    totalPage: Math.ceil(count / reqPagination.limit),
+    indexStart: (reqPagination.page - 1) * reqPagination.limit + 1,
+    indexEnd: Math.min(reqPagination.page * reqPagination.limit, count),
+    perPage: reqPagination.limit,
+    currentPage: reqPagination.page,
+    totalItems: count,
+  };
+
+  return meta;
 };
+
 module.exports = paginationHelper;
