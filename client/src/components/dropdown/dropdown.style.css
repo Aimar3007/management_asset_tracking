@@ -1,0 +1,67 @@
+.dropDown {
+    @apply border border-logistical-gray-ver3 text-size-S rounded-[5px] bg-white;
+    /* text-font-v2-light font-rubik  */
+}
+
+.dropdownParent-style {
+    @apply relative w-full;
+}
+.dropdownParent-style label {
+    @apply w-fit absolute z-[1];
+    @apply translate-x-2;
+}
+
+.dropdownLabelDiv-style {
+    @apply bg-white px-[1px] h-[2px] w-fit;
+}
+.dropdownParent-style p {
+    @apply w-fit;
+    @apply text-size-XS;
+    @apply -translate-y-2;
+}
+.label-focus {
+    color: #d2f1fc;
+}
+.border-focus {
+    border-color: #d2f1fc;
+}
+[type='text']:focus,
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+    --tw-ring-color: transparent !important;
+    --tw-ring-shadow: transparent !important;
+}
+
+/* overflow multi value */
+.css-3w2yfm-ValueContainer {
+    overflow: auto !important;
+    max-height: 99px;
+    scrollbar-width: none;
+}
+
+/* icon svg arrow */
+.css-tj5bde-Svg {
+    @apply cursor-pointer;
+}
+
+.css-1nmdiq5-menu {
+    z-index: 99999 !important;
+}
+
+select.disabled {
+    pointer-events: none;
+    background-color: #ffffff; /* White color */
+    border-color: inherit; /* Inherit the original border color */
+}

@@ -1,0 +1,21 @@
+.login-bg {
+    /* background-image: url('../../assets/img/generic/BgLogin.png'); */
+    background-image: url('../../assets/img/gallery/BgLogin.jpg');
+
+    /* Full height */
+    height: 100vh;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-container {
+    background: #fff;
+}
+
+.login-logo {
+    margin-bottom: 20px;
+    width: 160px;
+}

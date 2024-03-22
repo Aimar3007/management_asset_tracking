@@ -1,0 +1,65 @@
+.pagination-container {
+    @apply flex flex-row w-fit self-start py-3;
+}
+
+.pagination {
+    @apply flex m-0 items-center justify-start w-fit list-none flex-row bg-white;
+    @apply h-12 rounded;
+}
+
+.pagination li {
+    @apply flex items-center justify-center;
+}
+
+.paging-arrow {
+    @apply text-logistical-gray-ver1 text-size-XL font-medium border-solid border-[0.5px] rounded-logistical-radius mx-3;
+}
+
+.disable {
+    @apply text-logistical-gray-ver1;
+}
+
+.paging-number-total {
+    @apply w-9 m-2.5 my-2.5 text-logistical-gray-ver1;
+}
+
+.page-of {
+    @apply m-1 text-size-M;
+}
+
+.container-total-page {
+    @apply items-center flex pl-5 space-x-1;
+}
+
+.text-total-page-light {
+    @apply items-center text-logistical-gray-ver1 text-size-XS;
+}
+
+.text-total-page-dark {
+    @apply items-center text-logistical-gray-ver1 text-size-XS font-medium;
+}
+
+.export-btn {
+    @apply w-20;
+}
+
+/* BADGE */
+/* .badge {
+    @apply bg-blue-100 text-blue-800 text-size-XS font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400;
+} */
+
+.rounded-left-hover {
+    @apply rounded-tl rounded-bl;
+}
+
+.rounded-right-hover {
+    @apply rounded-tr rounded-br text-obo-main-gray;
+}
+
+.square-hover {
+    @apply hover:bg-logistical-gray-ver2;
+}
+
+.paging-btn {
+    @apply h-10 w-10;
+}

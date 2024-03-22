@@ -1,0 +1,7 @@
+.bread-crumb {
+    @apply sm:hidden lg:flex text-size-L tracking-tight font-normal cursor-default capitalize h-full items-center border-[#f6f7fb]  text-obo-main-gray;
+}
+
+.icon {
+    @apply text-size-XL;
+}

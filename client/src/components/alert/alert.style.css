@@ -1,0 +1,6 @@
+.alert-warning {
+    @apply bg-logistical-yellow-soft text-logistical-yellow-dark;
+}
+.alert-danger {
+    @apply bg-logistical-red-soft text-logistical-red-dark;
+}

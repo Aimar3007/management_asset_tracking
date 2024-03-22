@@ -1,0 +1,78 @@
+.create-booking .detail-content {
+    @apply h-[calc(100vh-230px)] overflow-y-auto overflow-x-hidden text-logistical-gray-ver4;
+}
+
+.create-booking table input {
+    @apply border-r-0 border-none w-full;
+}
+
+.create-booking th,
+.create-booking td,
+.create-booking td {
+    @apply border-2 border-logistical-gray-ver1 pl-2;
+}
+
+.create-booking th:first-child {
+    @apply pl-2;
+}
+.create-booking td:first-child {
+    @apply pl-0;
+}
+
+.create-booking td {
+    @apply h-[40px];
+}
+
+.create-booking .simple-table-container {
+    @apply border-none;
+}
+
+/* company-address style */
+.company-address .inputParent-style {
+    @apply w-full mt-4;
+}
+
+.company-address .dropdown {
+    @apply w-full;
+}
+
+.company-address .dropdown,
+.company-address .textareaParent-style,
+.company-address flex .dropdown,
+.company-address flex .inputParent-style,
+.company-address button {
+    @apply mt-4;
+}
+
+.company-address .content-2 {
+    @apply ml-1;
+}
+
+/* booking-detail style */
+.booking-detail .inputParent-style {
+    @apply mt-3;
+}
+
+.booking-detail .dropdown {
+    @apply mt-3;
+}
+
+/* additional information style */
+.additional-information input {
+    @apply !w-full;
+}
+
+.additional-information .inputParent-style {
+    @apply w-full;
+}
+
+.additional-information {
+    @apply mt-4;
+}
+
+/* reference number style */
+.reference-number .content-2 .inputParent-style,
+.reference-number .content-2 .dropdown,
+.reference-number .content-3 .textareaParent-style {
+    @apply w-full mt-3;
+}

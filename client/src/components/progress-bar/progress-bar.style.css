@@ -1,0 +1,38 @@
+/* progress bar default */
+.progress-bar {
+    @apply flex items-center;
+}
+
+.progress-bar .bg-bar {
+    @apply bg-logistical-yellow;
+}
+
+.progress-bar .bg-progress {
+    @apply bg-logistical-blue-ver3;
+}
+
+.progress-bar i {
+    @apply text-[white];
+}
+
+/* .progress-bar-outline-green */
+.progress-bar-outline-green .bg-bar {
+    @apply flex flex-col bg-white;
+}
+
+.progress-bar-outline-green .border-bar {
+    @apply bg-white border-2 border-logistical-gray-ver8;
+}
+
+.progress-bar-outline-green .bg-progress {
+    @apply bg-logistical-green-ver2;
+}
+
+.progress-bar-outline-green i {
+    @apply text-[#2F6926];
+}
+
+/* progress-bar-outline-blue */
+.progress-bar-outline-blue .border-bar {
+    @apply bg-white border-2 border-sky-400;
+}

@@ -1,0 +1,45 @@
+.simple-table {
+    @apply w-full table-auto;
+    thead th {
+        position: sticky;
+        top: 0;
+    }
+}
+
+.simple-table thead tr {
+    @apply border-b  hover:bg-gray-200 border-logistical-gray-ver7;
+}
+
+.simple-table th {
+    @apply text-left h-10 px-2 z-[1];
+}
+
+.simple-table tbody tr {
+    @apply border-b hover:bg-gray-200 border-logistical-gray-ver7;
+}
+
+/* .simple-table tbody tr:last-child {
+    @apply border-none;
+} */
+
+.simple-table td:first-child,
+.simple-table th:first-child {
+    @apply pl-4;
+}
+.simple-table td {
+    @apply text-left h-10 px-2;
+}
+
+.simple-table-container {
+    @apply relative h-full w-full rounded bg-white border  border-solid border-logistical-gray-ver7;
+}
+
+.variant-gray {
+    @apply bg-[#EEF7FB80];
+    th {
+        @apply bg-[#F1F5F6];
+    }
+    td {
+        @apply bg-white;
+    }
+}

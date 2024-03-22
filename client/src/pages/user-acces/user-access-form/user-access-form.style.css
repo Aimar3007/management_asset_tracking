@@ -1,0 +1,33 @@
+.modalItem {
+    /* Set a fixed height for the container to enable scrolling */
+
+    /* For WebKit browsers like Chrome and Safari */
+    &::-webkit-scrollbar {
+        display: none;
+        width: 1px;
+        border-radius: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        display: none;
+        background-color: #4a5568;
+        border-radius: 1px;
+    }
+}
+
+.user-access {
+    .content {
+        @apply h-[calc(100vh-225px)] overflow-auto flex sm:flex-wrap gap-5;
+        @apply p-5 sm:p-5;
+    }
+
+    .content-flex {
+        @apply sm:w-full;
+    }
+    .content-flex-1 {
+        @apply w-1/2 sm:w-full;
+    }
+    .content-flex-2 {
+        @apply w-1/2 sm:w-full;
+    }
+}

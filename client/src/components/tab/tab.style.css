@@ -1,0 +1,17 @@
+.header-status {
+    @apply flex border-solid border-logistical-gray-ver3 overflow-auto;
+}
+
+.header-status .item {
+    @apply mr-4 cursor-pointer;
+    white-space: nowrap;
+}
+
+.header-status::-webkit-scrollbar {
+    height: 2px !important;
+    margin-bottom: 50px;
+}
+
+.header-status span {
+    @apply ml-2 p-1 rounded-[3px];
+}

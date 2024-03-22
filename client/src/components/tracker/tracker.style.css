@@ -1,0 +1,74 @@
+/* tracker bg blue */
+.tracker-bg-blue {
+    @apply bg-logistical-blue-ver6;
+}
+.tracker-bg-blue .active .circle {
+    @apply bg-logistical-blue-ver5;
+}
+
+.tracker-bg-blue .active .line {
+    @apply bg-logistical-blue-ver5;
+}
+
+.tracker-bg-blue .active .item-status {
+    @apply text-logistical-blue-ver5;
+}
+
+.tracker-bg-blue .active .item-description {
+    @apply font-bold text-logistical-gray-ver4;
+}
+
+.tracker-bg-blue .inactive .circle {
+    @apply bg-logistical-grey;
+}
+
+.tracker-bg-blue .inactive .line {
+    @apply bg-logistical-grey;
+}
+
+.tracker-bg-blue .inactive .item-status {
+    @apply text-logistical-grey;
+}
+
+.tracker-bg-blue .inactive .item-description {
+    @apply font-bold text-logistical-grey;
+}
+.tracker-bg-blue .inactive .item-details {
+    @apply text-logistical-grey;
+}
+
+/* tracker bg white */
+.tracker-bg-white {
+    @apply bg-white;
+}
+.tracker-bg-white .active .circle {
+    @apply bg-logistical-blue-ver5;
+}
+
+.tracker-bg-white .active .line {
+    @apply bg-logistical-blue-ver5;
+}
+
+.tracker-bg-white .active .item-status {
+    @apply text-logistical-blue-ver5;
+}
+
+.tracker-bg-white .active .item-description {
+    @apply text-logistical-gray-ver4;
+}
+
+.tracker-bg-white .inactive .circle {
+    @apply bg-logistical-grey;
+}
+
+.tracker-bg-white .inactive .line {
+    @apply bg-logistical-grey;
+}
+
+.tracker-bg-white .inactive .item-status {
+    @apply text-logistical-grey;
+}
+
+.tracker-bg-white .inactive .item-description {
+    @apply text-logistical-grey;
+}

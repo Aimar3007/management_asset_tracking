@@ -1,0 +1,19 @@
+.blue {
+    @apply bg-logistical-blue;
+}
+
+.yellow {
+    @apply bg-[#FFCB44];
+}
+
+.green {
+    @apply bg-logistical-green;
+}
+
+.red {
+    @apply bg-logistical-red-ver2;
+}
+
+.gray {
+    @apply bg-logistical-gray-ver3;
+}

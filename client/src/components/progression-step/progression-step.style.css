@@ -1,0 +1,25 @@
+.step-item {
+    @apply relative flex flex-col justify-center items-center w-60;
+}
+.step-item:not(:first-child):before {
+    @apply content-[''] bg-slate-400 absolute w-full h-[3px] right-2/4 top-1/3 -translate-y-2/4;
+}
+.step {
+    @apply w-10 h-10 flex items-center justify-center z-10 relative rounded-full bg-white font-semibold text-logistical-gray-ver4 border-2 border-slate-400;
+}
+
+.ongoing .step {
+    @apply bg-white text-logistical-blue-ver3 border-2 border-sky-400;
+}
+.completed .step {
+    @apply bg-logistical-blue-ver3 text-white border-2 border-sky-400;
+}
+
+.ongoing p,
+.completed p {
+    @apply text-logistical-blue-ver3;
+}
+.completed:not(:first-child):before,
+.ongoing:not(:first-child):before {
+    @apply bg-logistical-blue-ver3 text-white;
+}

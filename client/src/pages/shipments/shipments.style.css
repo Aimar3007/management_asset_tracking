@@ -1,0 +1,12 @@
+/* shipment details */
+.shipment-detail .simple-table-container td {
+    @apply min-w-full;
+}
+
+.shipment-detail .simple-table-container th {
+    @apply px-2 whitespace-nowrap;
+}
+
+.shipment-detail .simple-table-container td {
+    @apply whitespace-nowrap px-2;
+}

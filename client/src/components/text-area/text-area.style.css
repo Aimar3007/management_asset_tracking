@@ -1,0 +1,38 @@
+.textareaParent-style {
+  @apply relative;
+}
+
+.textareaParent-style label {
+  @apply w-fit absolute;
+  @apply translate-x-2;
+}
+
+.textareaParent-style div {
+  @apply w-fit h-[2px] px-[2px];
+  @apply bg-white;
+}
+
+.textareaParent-style p {
+  @apply w-fit;
+  @apply text-size-XS;
+  @apply -translate-y-2;
+}
+
+.textareaParent-style input {
+  @apply h-10;
+  @apply bg-white disabled:bg-logistical-gray-ver5;
+  @apply border rounded-logistical-radius border-logistical-gray-ver3 focus:border-logistical-blue-ver3 focus:border-opacity-50 disabled:border-logistical-blue-ver7;
+  @apply text-size-S text-logistical-blue-ver7;
+  @apply placeholder:text-logistical-gray-ver7 placeholder:text-opacity-50;
+  @apply focus:!ring-transparent;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #333;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #333;
+}

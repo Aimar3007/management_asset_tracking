@@ -1,0 +1,16 @@
+.body-detail {
+    grid-template-rows: repeat(7, minmax(0, 1fr));
+}
+
+.purchase-order-detail .simple-table-container {
+    @apply rounded-none rounded-t;
+}
+
+.process-po .simple-table td:first-child,
+.process-po .simple-table th:first-child {
+    @apply !pl-0;
+}
+
+.purchase-order .overlay {
+    @apply sm:-mr-[1rem] sm:ml-[1rem];
+}

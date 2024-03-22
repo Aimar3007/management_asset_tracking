@@ -1,0 +1,45 @@
+.inputParent-style {
+    @apply relative w-full;
+}
+
+.inputParent-style label {
+    @apply w-fit absolute;
+    @apply translate-x-2;
+}
+
+.inputParent-style div {
+    @apply w-fit h-[2px] px-[2px];
+    @apply bg-white;
+}
+
+.inputParent-style p {
+    @apply w-fit;
+    @apply text-size-XS;
+    @apply -translate-y-2;
+}
+
+.inputParent-style input {
+    @apply h-10;
+    @apply bg-white disabled:bg-logistical-gray-ver5;
+    @apply border rounded-logistical-radius border-logistical-gray-ver3 focus:!border-dark-green focus:!border-opacity-50 disabled:border-logistical-blue-ver7;
+    @apply text-size-S text-dark-green;
+    @apply placeholder:text-logistical-gray-ver7 placeholder:text-opacity-50;
+    @apply focus:!ring-transparent;
+    @apply w-full;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    -webkit-text-fill-color: #333;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    -webkit-text-fill-color: #333;
+}
+
+input[type='text'].disabled {
+    pointer-events: none;
+    background-color: #ffffff; /* White color */
+    border-color: inherit; /* Inherit the original border color */
+}

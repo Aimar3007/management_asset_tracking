@@ -1,0 +1,19 @@
+.square-toggle {
+    @apply items-center justify-center w-[180px] h-[40px] rounded-[5px] transition border border-logistical-gray-ver3;
+}
+
+.inner-square {
+    @apply justify-center items-center  w-3/6 h-4/5 rounded-[3px] border border-logistical-gray-ver3 translate-x-10 transition;
+}
+
+.inner-square.on {
+    @apply translate-x-10;
+}
+
+.inner-square.off {
+    @apply -translate-x-10;
+}
+
+.label {
+    @apply justify-center items-center;
+}

@@ -1,0 +1,92 @@
+/*variant ID => variant-<Organization>-<color>*/
+
+.variant-logistical-lightblue {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-logistical-blue hover:bg-logistical-blue-ver3 active:bg-logistical-blue-ver5;
+    @apply border-2 rounded-logistical-radius border-transparent hover:border-logistical-blue-ver3 hover:border-opacity-20 active:border-white;
+    @apply text-center text-size-S tracking-normal text-white hover:text-white active:text-white;
+    @apply ring-transparent active:ring-logistical-blue-ver5 active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+
+.variant-logistical-lightblue-invert {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-white hover:bg-logistical-blue-ver1 active:bg-logistical-blue-ver5;
+    @apply border rounded-logistical-radius border-logistical-blue-ver3 hover:border-logistical-blue-ver3 hover:border-opacity-20 active:border-white;
+    @apply text-center text-size-S tracking-normal text-logistical-blue-ver3 hover:text-white active:text-white;
+    @apply ring-transparent active:ring-logistical-blue-ver5 active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+
+.variant-logistical-breadcrumb {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-logistical-blue-ver1 hover:bg-logistical-blue-ver3 active:bg-logistical-blue-ver5;
+    @apply border rounded-logistical-radius border-logistical-blue-ver5 hover:border-logistical-blue-ver3 hover:border-opacity-20 active:border-white;
+    @apply text-center text-size-S tracking-normal text-logistical-blue-ver5 hover:text-white active:text-white;
+    @apply ring-transparent active:ring-logistical-blue-ver5 active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+
+.variant-logistical-darkblue {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-logistical-blue-ver4 hover:bg-logistical-blue-ver3 active:bg-white;
+    @apply border-2 rounded-logistical-radius border-transparent hover:border-logistical-blue-ver3 hover:border-opacity-40 active:border-logistical-blue-ver5;
+    @apply text-center text-size-XS tracking-normal text-white hover:text-white active:text-logistical-blue-ver5;
+    @apply active:ring-white active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 18px;
+}
+
+.variant-logistical-white {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-white hover:bg-logistical-blue-ver4 active:bg-logistical-blue-ver5;
+    @apply border rounded-logistical-radius border-logistical-gray-ver3 hover:border-logistical-blue-ver1 hover:border-opacity-20 active:border-white;
+    @apply text-center text-size-S tracking-normal text-logistical-gray-ver4 hover:text-white active:text-white;
+    @apply active:ring-logistical-blue-ver5 active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+.variant-secondary {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-white hover:bg-[#E5F8FF] active:bg-[#BEEDFF];
+    @apply border rounded-logistical-radius border-logistical-blue hover:border-logistical-blue;
+    @apply text-center text-size-S tracking-normal text-logistical-blue hover:text-logistical-blue active:text-logistical-blue;
+    @apply active:ring-logistical-blue active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+.variant-danger {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-white hover:bg-logistical-red-ver1 hover:bg-opacity-5;
+    @apply border rounded-logistical-radius border-logistical-red-ver1 hover:border-logistical-red-ver1;
+    @apply text-center text-size-S tracking-normal text-logistical-red-ver1 hover:text-logistical-red-ver1;
+    @apply active:ring active:text-logistical-red-ver1 active:bg-logistical-red-ver1  active:bg-opacity-20;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+.variant-danger-fill {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-logistical-red-ver2  hover:bg-logistical-red-ver3;
+    @apply border rounded-logistical-radius border-logistical-red-ver1 hover:border-logistical-red-ver1;
+    @apply text-center text-size-S tracking-normal text-white;
+    @apply active:ring active:text-logistical-red-ver1 active:bg-logistical-red-ver1  active:bg-opacity-20;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
+i {
+    @apply text-size-L;
+}
+
+/* asset management */
+.variant-primary {
+    @apply flex items-center justify-center h-[40px] p-4 transition;
+    @apply bg-green hover:opacity-80;
+    @apply border-2 rounded-logistical-radius border-transparent hover:border-opacity-20 active:border-white;
+    @apply text-center text-size-S tracking-normal text-white hover:text-white active:text-white;
+    @apply ring-transparent active:ring-dark-green active:ring-2;
+    @apply disabled:opacity-20;
+    padding-top: 20px;
+}
