@@ -3,6 +3,9 @@ const {
   getAssetsByPkRepository,
   createAssetsRepository,
   updateAssetsRepository,
+  uniqueBrandsRepository,
+  uniqueNameRepository,
+  uniqueUserRepository,
 } = require("../repositories/assetsRepository");
 
 const getAllAssetsService = async (req) => {
@@ -35,6 +38,18 @@ const getAllAssetsService = async (req) => {
 
 const getAllAssetsByPkService = async (id) => {
   return getAssetsByPkRepository(id);
+};
+
+const getDropdownAssetsService = async () => {
+  const brand = await uniqueBrandsRepository;
+  const name = await uniqueNameRepository;
+  const user = await uniqueUserRepository;
+  const dataDropdown = {
+    brand,
+    name,
+    user,
+  };
+  return dataDropdown;
 };
 
 const createAssetsService = async (req) => {
@@ -99,4 +114,5 @@ module.exports = {
   createAssetsService,
   updateAssetsService,
   deleteAssetsService,
+  getDropdownAssetsService,
 };

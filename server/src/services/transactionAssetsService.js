@@ -21,11 +21,11 @@ const getAllTransactionAssetsService = async (req) => {
   const search = req.body.description;
 
   const reqPagination = {
-    limit,
     page,
-    start: (page - 1) * limit,
-    end: page * limit,
+    limit,
+    offset: (page - 1) * limit,
   };
+
 
   const getData = await getAllTransactionAssetsRepository(
     reqPagination,
@@ -43,7 +43,6 @@ const createTransactionAssetService = async (req) => {
     assetId: req.body.assetId,
     reasonRequest: req.body.reasonRequest,
     typeTransactionAssetId: req.body.typeTransactionAssetId,
-    assetId: req.body.assetId,
     createdAt: new Date(),
   };
 
@@ -58,8 +57,9 @@ const updateTransactionAssetService = async (req) => {
     reasonRequest: req.body.reasonRequest,
     reasonReject: req.body.reasonReject,
     typeTransactionAssetId: req.body.typeTransactionAssetId,
+    statusTransactionId: req.body.statusTransactionId,
     updatedAt: new Date(),
-    // deletedAt: req.body.deletedAt,
+    deletedAt: req.body.deletedAt,
   };
 
   // Remove key-value pairs with empty values

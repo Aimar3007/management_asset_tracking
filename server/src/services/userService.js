@@ -10,10 +10,9 @@ const getAllUserService = async (req) => {
   const page = parseInt(req.body.page);
   const limit = parseInt(req.body.record);
   const reqPagination = {
-    limit,
     page,
-    start: (page - 1) * limit,
-    end: page * limit,
+    limit,
+    offset: (page - 1) * limit,
   };
 
   let filter = {

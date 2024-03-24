@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Select from 'react-select'
-// import makeAnimated from 'react-select/animated'
 import { IDropdown, IDropdownItem } from './dropdown.interface'
 import './dropdown.style.css'
 import AsyncSelect from 'react-select/async'
@@ -16,7 +15,7 @@ function Dropdown<T>({
     disabled = false,
     useBorder = true,
     isAsync = false,
-    options,
+    options = [],
     ...props
 }: IDropdown<T>) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -28,7 +27,6 @@ function Dropdown<T>({
         : ''
     const labelFocus = focus ? 'text-logistical-blue-ver3' : ''
     const borderFocus = focus ? '!border-logistical-blue-ver3' : ''
-    // const animatedComponents = makeAnimated()
 
     // isloading
     if (isLoading) {
@@ -52,53 +50,22 @@ function Dropdown<T>({
                     <Select
                         className={`${props.className}`}
                         classNamePrefix={'select'}
-                        // comment because there are still bugs
-                        // components={animatedComponents}
-                        closeMenuOnSelect={
-                            isMultiSelect === true ? false : true
-                        }
+                        // closeMenuOnSelect={
+                        //     isMultiSelect === true ? false : true
+                        // }
                         placeholder={props.placeholder}
-                        value={props?.value}
-                        isMulti={isMultiSelect}
+                        value={props.value}
                         isDisabled={disabled}
                         isLoading={isLoading}
                         isClearable={isClearable}
                         isSearchable={isSearchable}
                         options={options}
-                        isOptionDisabled={(options) =>
-                            options?.value === 'loading'
-                        }
                         menuPosition="fixed"
-                        menuIsOpen={isOpen}
-                        onMenuOpen={() => setIsOpen(true)}
-                        onMenuClose={() => setIsOpen(false)}
                         maxMenuHeight={115}
-                        onFocus={() => {
-                            setFocus(true)
-                        }}
-                        onBlur={() => {
-                            setFocus(false)
-                        }}
                         onChange={(e: IDropdownItem<T> | null | any) => {
                             if (props.onClick) props.onClick(e)
-                            if (props.additionalDataHandling)
-                                props.additionalDataHandling(
-                                    e?.additionalData ?? null,
-                                )
                         }}
-                        onInputChange={(value) => {
-                            if (props.onInputChange)
-                                return props.onInputChange(value)
-                        }}
-                        filterOption={(option, inputValue) => {
-                            if (isLoading) {
-                                return true
-                            }
-                            return option.label
-                                .toUpperCase()
-                                .includes(inputValue.toUpperCase())
-                        }}
-                        unstyled={false}
+                        // unstyled={false}
                         styles={{
                             control: (base) => ({
                                 ...base,
@@ -152,16 +119,16 @@ function Dropdown<T>({
                                 borderStyle: 'solid',
                                 position: 'relative',
                             }),
-                            dropdownIndicator: (base, state) => ({
-                                ...base,
-                                display: requiredDropdown,
-                                transform: state.selectProps.menuIsOpen
-                                    ? 'rotate(180deg)'
-                                    : '',
-                                transitionProperty: 'all',
-                                transitionDuration: '0.5s',
-                                paddingLeft: '2px !important',
-                            }),
+                            // dropdownIndicator: (base, state) => ({
+                            //     ...base,
+                            //     display: requiredDropdown,
+                            //     transform: state.selectProps.menuIsOpen
+                            //         ? 'rotate(180deg)'
+                            //         : '',
+                            //     transitionProperty: 'all',
+                            //     transitionDuration: '0.5s',
+                            //     paddingLeft: '2px !important',
+                            // }),
                             indicatorSeparator: (base) => ({
                                 ...base,
                                 display: 'none',

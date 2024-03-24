@@ -17,6 +17,9 @@ const getAllTransactionAssetsRepository = async (
     limit: reqPagination.limit,
     where: {
       ...(filter && filter),
+      deletedAt: {
+        [Op.is]: null,
+      },
     },
     include: [
       {

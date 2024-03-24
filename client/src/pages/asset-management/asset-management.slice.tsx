@@ -12,6 +12,9 @@ interface IAssetManagementSlice {
     payload: IAssetManagementPayload
     filter: IAssetManagementFilter
     meta: IMeta
+
+    // segment details
+    detailData: IAssetManagement
 }
 
 const initialState: IAssetManagementSlice = {
@@ -34,6 +37,61 @@ const initialState: IAssetManagementSlice = {
         brand: { label: '', value: '' },
         user: { label: '', value: '' },
         description: '',
+    },
+
+    // segment details
+    detailData: {
+        id: 0,
+        name: '',
+        description: '',
+        brand: '',
+        serialNumber: '',
+        condition: '',
+        purchaseDate: '',
+        userId: 0,
+        previousUserId: 0,
+        notes: null,
+        lastDateOfRepair: null,
+        image: null,
+        reasonToRemoveAssets: null,
+        deletedAt: null,
+        createdBy: null,
+        updatedBy: null,
+        deletedBy: null,
+        createdAt: '',
+        updatedAt: null,
+        user: {
+            id: 0,
+            userName: '',
+            email: '',
+            roleId: 0,
+            role: {
+                id: 0,
+                type: '',
+                createdAt: '',
+                updatedAt: null,
+            },
+            city: '',
+            deletedAt: null,
+            createdAt: '',
+            updatedAt: null,
+        },
+        previousUser: {
+            id: 0,
+            userName: '',
+            email: '',
+            roleId: 0,
+            role: {
+                id: 0,
+                type: '',
+                createdAt: '',
+                updatedAt: null,
+            },
+            city: '',
+            deletedAt: null,
+            createdAt: '',
+            updatedAt: null,
+        },
     },
 }
 
@@ -74,6 +132,18 @@ const assetManagementSlice = createSlice({
                 payload,
             }
         },
+
+        // segment details
+        setDataDetail(
+            state,
+            action: PayloadAction<IResponseData<IAssetManagement>>,
+        ) {
+            const { data } = action.payload
+            return {
+                ...state,
+                detailData: data,
+            }
+        },
     },
 })
 
@@ -87,8 +157,12 @@ export const payloadSelector = (state: RootState) =>
 export const AMMetaSelector = (state: RootState) =>
     state.assetManagement.meta || {}
 
+//segment detail
+export const AMDDataSelector = (state: RootState) =>
+    state.assetManagement.detailData || {}
+
 // all actions
-export const { setData, setPayload, setFilter, setPageNumber } =
+export const { setData, setPayload, setFilter, setPageNumber, setDataDetail } =
     assetManagementSlice.actions
 
 // Reducer

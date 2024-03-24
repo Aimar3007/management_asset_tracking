@@ -8,10 +8,10 @@ const {
 const getAllTransactionAsset = async (req, res) => {
   try {
     const getData = await getAllTransactionAssetsService(req);
-    const pagination = paginationHelper(getData.count, getData.reqPagination);
+    const meta = paginationHelper(getData);
     const response = {
       data: getData.rows,
-      pagination,
+      meta,
       isSuccess: true,
     };
     res.status(200).json(response);

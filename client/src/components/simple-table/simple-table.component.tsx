@@ -8,7 +8,6 @@ function SimpleTable<T>({
     headers,
     data,
     variant = 'white',
-    isRemoveRow = false,
     isAddRow = false,
     ...props
 }: ISimpleTable<T>) {
@@ -45,7 +44,7 @@ function SimpleTable<T>({
                                     </th>
                                 )
                             })}
-                            {(isRemoveRow || isAddRow) && (
+                            {props.enableActionButton && (
                                 <th className="bg-white">Action</th>
                             )}
                         </tr>
@@ -56,7 +55,6 @@ function SimpleTable<T>({
                                 idx2 + 1 === data.length
                                     ? disableLastRowHover
                                     : ''
-
                             return (
                                 <tr
                                     key={idx2}
@@ -94,18 +92,35 @@ function SimpleTable<T>({
                                         )
                                     })}
                                     {props.enableActionButton ? (
-                                        <td className="pr-4 w-[65px]">
+                                        <td className="pr-4 w-[65px] flex gap-x-2">
                                             <Button
                                                 onClick={() => {
-                                                    props?.onClickAcitonButton &&
-                                                        props?.onClickAcitonButton(
-                                                            row?.fileName,
-                                                            row?.shipmentNo,
+                                                    props.func &&
+                                                        props.func(
+                                                            row?.id,
+                                                            'edit',
                                                         )
                                                 }}
-                                                variant="logistical-white"
-                                                icon="ri-download-2-line !p-0"
+                                                icon="ri-edit-2-line"
                                                 className={`!p-0 !w-full !h-[1.8rem]`}
+                                                variant="logistical-lightblue-invert"
+                                                isDisabled={
+                                                    row?.statusTransaction
+                                                        ?.type === 'approve' &&
+                                                    row.type.type === 'return'
+                                                }
+                                            />
+                                            <Button
+                                                onClick={() => {
+                                                    props.func &&
+                                                        props.func(
+                                                            row?.id,
+                                                            'check',
+                                                        )
+                                                }}
+                                                icon="ri-list-check"
+                                                className={`!p-0 !w-full !h-[1.8rem]`}
+                                                variant="logistical-lightblue-invert"
                                             />
                                         </td>
                                     ) : (

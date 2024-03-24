@@ -19,6 +19,9 @@ export interface ISimpleTable<T> {
     isDownload?: boolean
     enableActionButton?: boolean
     onClickAcitonButton?: (value: string, value2: string) => void
+
+    // asset management
+    func?: (id: number | string, action: string) => void
 }
 
 export interface ISTColumn<T> {
@@ -29,7 +32,7 @@ export interface ISTColumn<T> {
     minWidth?: number
     customBuild?: (
         data: string | T,
-        setHandle?: any,
+        setHandle?: () => void,
         id?: number,
         value?: string,
         rowData?: T,

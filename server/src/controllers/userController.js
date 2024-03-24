@@ -9,9 +9,9 @@ const {
 const getAllUsers = async (req, res) => {
   try {
     const getData = await getAllUserService(req);
-    const pagination = paginationHelper(getData.count, getData.reqPagination);
+    const meta = paginationHelper(getData);
     const response = {
-      pagination,
+      meta,
       data: getData.rows,
       isSuccess: true,
     };
@@ -24,7 +24,7 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUsersByPk = async (req, res) => {
-  const id = parseInt(req.body.id);
+  const id = parseInt(req.params.id);
 
   try {
     const getData = await getUserByIdService(id);

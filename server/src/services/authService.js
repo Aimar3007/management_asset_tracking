@@ -29,9 +29,11 @@ const loginService = async (req) => {
   req.session.userId = user.id;
   req.session.userEmail = user.email;
 
-  const token = jwt.sign({ userId: user.id }, "secret", { expiresIn: "1h" }); // Ganti dengan secret yang lebih aman
+  const token = jwt.sign({ userId: user.id }, "secret", { expiresIn: "7d" }); // Ganti dengan secret yang lebih aman
   const data = {
-    user,
+    id: user.id,
+    role: user.role.type,
+    email: user.email,
     token,
   };
 

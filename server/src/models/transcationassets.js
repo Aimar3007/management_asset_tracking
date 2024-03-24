@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       reasonRequest: DataTypes.STRING,
       reasonReject: DataTypes.STRING,
       manageBy: DataTypes.INTEGER,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,

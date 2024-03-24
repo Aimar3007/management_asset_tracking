@@ -4,6 +4,7 @@ const {
   createAssetsService,
   updateAssetsService,
   deleteAssetsService,
+  getDropdownAssetsService,
 } = require("../services/assetsService");
 const paginationHelper = require("../helper/paginationHelper");
 
@@ -25,7 +26,7 @@ const getAllAssets = async (req, res) => {
 };
 
 const getAssetsByPk = async (req, res) => {
-  const id = parseInt(req.body.id);
+  const id = parseInt(req.params.id);
 
   try {
     const getData = await getAllAssetsByPkService(id);
@@ -90,10 +91,27 @@ const deleteAssets = async (req, res) => {
   }
 };
 
+
+const getDropdownAsset = async (req, res) => {
+  try {
+    const getData = await getDropdownAssetsService();
+    const response = {
+      data: getData,
+      isSuccess: true,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
+  }
+};
+
 module.exports = {
   getAllAssets,
   getAssetsByPk,
   createAssets,
   updateAssets,
   deleteAssets,
+  getDropdownAsset,
 };

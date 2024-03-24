@@ -11,12 +11,22 @@ import {
 } from './asset-management.slice'
 import { useFormik } from 'formik'
 import { useAppDispatch } from 'store'
-import { IDropdownItem } from 'components/dropdown/dropdown.interface'
 import { useEffect, useState } from 'react'
-import { getAssetsData } from 'repository/asset-management.repository'
-import { IAssetManagement } from 'repository/interface/asset-management-data.interface'
+import {
+    getAssetsData,
+    getDAMfilter,
+} from 'repository/asset-management.repository'
+import {
+    IAssetManagement,
+    IAssetManagementPayload,
+    IDAMFilter,
+} from 'repository/interface/asset-management-data.interface'
 import { useNavigate } from 'react-router-dom'
 import { IResponseData } from 'common/common.interface'
+import {
+    IAMFileterOptions,
+    IAssetManagementFilter,
+} from './asset-management.interface'
 
 const useAssetManagement = () => {
     const dispatch = useAppDispatch()
@@ -30,6 +40,7 @@ const useAssetManagement = () => {
 
     // state
     const [loading, setLoading] = useState<boolean>(false)
+    const [filterOptions, setFilterOptions] = useState<IAMFileterOptions>()
 
     const formik = useFormik<{ searchTerm: string }>({
         initialValues: { searchTerm: '' },
@@ -55,29 +66,22 @@ const useAssetManagement = () => {
 
     useEffect(() => {
         loadData()
+    }, [payload])
+
+    useEffect(() => {
+        loadFilterOptions()
     }, [])
 
-    const setValuFilter = ({
-        brand,
-        name,
-        user,
-    }: {
-        brand?: IDropdownItem
-        name?: IDropdownItem
-        user?: IDropdownItem
-    }) => {
-        if (brand) {
-            dispatch(setFilter({ ...filter, brand }))
-            dispatch(setPayload({ ...payload, brand: brand?.value as string }))
+    const setValueFilter = (data: IAssetManagementFilter) => {
+        dispatch(setFilter(data))
+        const setData = {
+            userId: data?.user?.value,
+            brand: data?.brand?.value,
+            name: data?.name?.value,
         }
-        if (name) {
-            dispatch(setFilter({ ...filter, name }))
-            dispatch(setPayload({ ...payload, name: name?.value as string }))
-        }
-        if (user) {
-            dispatch(setFilter({ ...filter, user }))
-            dispatch(setPayload({ ...payload, userId: user?.value as number }))
-        }
+        dispatch(
+            setPayload({ ...payload, ...(setData as IAssetManagementPayload) }),
+        )
     }
 
     const loadData = async () => {
@@ -95,6 +99,26 @@ const useAssetManagement = () => {
         }
     }
 
+    const loadFilterOptions = async () => {
+        try {
+            const getDropdownOptions =
+                (await getDAMfilter()) as IResponseData<IDAMFilter>
+
+            const { brand, name, user } = getDropdownOptions.data
+
+            const setData = {
+                brands: brand?.map((x) => ({ label: x.brand, value: x.brand })),
+                names: name?.map((x) => ({ label: x.name, value: x.name })),
+                users: user?.map((x) => ({ label: x.userName, value: x.id })),
+            }
+
+            setFilterOptions(setData)
+        } catch (e) {
+            const errorMessage = typeof e !== 'string' ? 'Something wrong' : e
+            console.log(errorMessage)
+        }
+    }
+
     const setPageData = (pageNumber: number) => {
         dispatch(setPageNumber(pageNumber))
     }
@@ -105,7 +129,8 @@ const useAssetManagement = () => {
         loading,
         AMData,
         AMMeta,
-        setValuFilter,
+        filterOptions,
+        setValueFilter,
         setPageData,
         navigate,
     }

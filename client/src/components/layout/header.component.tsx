@@ -105,7 +105,9 @@ export default function Header(): React.ReactElement {
                         menuRef={menuRef}
                         isOpen={openUserMenu}
                         funcProfile={() => {
-                            nav('/profile')
+                            console.log(session)
+
+                            nav('/profile/' + session?.id)
                         }}
                         funcLogout={() => {
                             dispatch(logoutAction())

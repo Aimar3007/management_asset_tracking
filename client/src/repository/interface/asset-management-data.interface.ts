@@ -1,3 +1,5 @@
+import { IUser } from './user.interface'
+
 export interface IAssetManagement {
     id: number
     name: string
@@ -19,18 +21,9 @@ export interface IAssetManagement {
     createdAt: string
     updatedAt: string | null
     user: IUser
+    dateOfUse?: string
     previousUser: IUser
-}
-
-export interface IUser {
-    id: number
-    userName: string
-    email: string
-    roleId: number
-    city: string
-    deletedAt: string | null
-    createdAt: string
-    updatedAt: string | null
+    repairHistory?: null
 }
 
 export interface IAssetManagementPayload {
@@ -40,4 +33,10 @@ export interface IAssetManagementPayload {
     description?: string
     brand?: string
     userId?: number
+}
+
+export interface IDAMFilter {
+    brand: { brand: string }[]
+    name: { name: string }[]
+    user: { id: number; userName: string }[]
 }

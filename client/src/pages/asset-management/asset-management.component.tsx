@@ -6,7 +6,7 @@ import Tooltip from 'components/tooltip/tooltip.component'
 import FormInput from 'components/form-input/form-input.component'
 import { IDropdownItem } from 'components/dropdown/dropdown.interface'
 import { IAssetManagement } from 'repository/interface/asset-management-data.interface'
-import Table from 'components/table2/table.component'
+import Table from 'components/table/table.component'
 
 const AssetManagement = () => {
     const {
@@ -15,13 +15,14 @@ const AssetManagement = () => {
         AMData,
         loading,
         AMMeta,
-        setValuFilter,
+        filterOptions,
+        setValueFilter,
         setPageData,
         navigate,
     } = useAssetManagement()
 
     return (
-        <div className="purchase-order container-global content-full-height flex">
+        <div className="container-global content-full-height flex">
             <div className="flex flex-grow flex-col w-[calc(100vw-20rem)] sm:w-[calc(100vw-4rem)]">
                 <div className="flex gap-x-40 p-3">
                     <div className="flex gap-x-3 w-full">
@@ -29,34 +30,43 @@ const AssetManagement = () => {
                             options={assetNameOptions}
                             label="Name"
                             onClick={(value) => {
-                                setValuFilter({
+                                setValueFilter({
+                                    ...filter,
                                     name: value as IDropdownItem,
                                 })
                             }}
                             value={filter?.name}
                             dropDownIndicator={true}
+                            isClearable={true}
+                            isSearchable={true}
                         />
                         <Dropdown
-                            options={assetNameOptions}
+                            options={filterOptions?.brands}
                             label="Brand"
                             onClick={(value) => {
-                                setValuFilter({
+                                setValueFilter({
+                                    ...filter,
                                     brand: value as IDropdownItem,
                                 })
                             }}
                             value={filter?.brand}
                             dropDownIndicator={true}
+                            isClearable={true}
+                            isSearchable={true}
                         />
                         <Dropdown
-                            options={assetNameOptions}
+                            options={filterOptions?.users}
                             label="User"
                             onClick={(value) => {
-                                setValuFilter({
+                                setValueFilter({
+                                    ...filter,
                                     user: value as IDropdownItem,
                                 })
                             }}
                             value={filter.user}
                             dropDownIndicator={true}
+                            isClearable={true}
+                            isSearchable={true}
                         />
                     </div>
 
@@ -117,46 +127,8 @@ const AssetManagement = () => {
                     moduleTitle={'Asset Management'}
                     onRowClick={function (data): void {
                         const id = data.id
-                        navigate('/purchase-order-detail/' + id)
+                        navigate('/asset-management-detail/' + id)
                     }}
-                    // checkboxVisible={
-                    //     organization === 'pan' &&
-                    //     tabFilter?.value === 'Canceled'
-                    //         ? true
-                    //         : false
-                    // }
-                    // checkboxDataHandling={(data: IPurchaseOrder[]) => {
-                    //     setSelectedPo(data)
-                    // }}
-                    // tabFilterItem={tabFilter}
-                    // enableExport={true}
-                    // additionalButtonBottom={
-                    //     organization === 'pan' &&
-                    //     tabFilter?.value === 'Canceled' ? (
-                    //         <>
-                    //             <Button
-                    //                 isDisabled={
-                    //                     selectedPo?.length < 1 ? true : false
-                    //                 }
-                    //                 className={`w-btnSmallWidth ml-2 mr-2 !pl-2 !pr-2`}
-                    //                 variant="logistical-darkblue"
-                    //                 label="RE-OPEN PO"
-                    //                 type="button"
-                    //                 onClick={() => {
-                    //                     poBulkStatusModalService.openModalHandling()
-                    //                 }}
-                    //             />
-                    //         </>
-                    //     ) : undefined
-                    // }
-                    // containerClassname={'overflow-auto'}
-                    // modalService={poGenerateReportModalService}
-                    // components={componentFilter}
-                    // resetFilter={resetFilterGenerateReport}
-                    // getDataGenerate={getDataGenerate}
-                    // removeFilter={removeTemporyFilter2}
-                    // generateReportData={generateReportData}
-                    // GenerateReportHeaders={POGenerateReportHeader}
                 />
             </div>
         </div>

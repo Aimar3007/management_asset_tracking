@@ -8,12 +8,14 @@ import storage from 'redux-persist/lib/storage'
 import commonReducer from 'common/common.slice'
 import loginReducer from '../pages/login/login.slice'
 import assetManagementReducer from '../pages/asset-management/asset-management.slice'
+import manageUserReducer from '../pages/manage-user/manage-user.slice'
 import storeReducer from '../store/slice'
 
 const rootReducer = combineReducers({
     common: commonReducer,
     login: loginReducer,
     assetManagement: assetManagementReducer,
+    manageUser: manageUserReducer,
     storeReducer,
 })
 

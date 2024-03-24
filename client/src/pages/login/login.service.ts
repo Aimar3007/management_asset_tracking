@@ -2,7 +2,7 @@
 import { ILoginValidation } from 'form-validation/login.validation'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {  postLogin } from 'repository/user.repository'
+import { postLogin } from 'repository/user.repository'
 import { useAppDispatch } from 'store'
 import { setLoginData } from './login.slice'
 import { IForgotPassword } from 'form-validation/forgot-password.validation'
@@ -29,6 +29,9 @@ export const useLogin = () => {
             const data = {
                 ...response.data,
             }
+            console.log('data', data)
+            console.log('response', response)
+
             dispatch(setLoginData(data))
 
             navigate('/asset-management')

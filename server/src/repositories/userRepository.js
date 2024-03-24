@@ -11,6 +11,12 @@ const getAllUserRepository = (reqPagination, search, filter) => {
       }),
       ...(filter && filter),
     },
+    include: [
+      {
+        model: Role,
+        as: "role", // Mengacu pada alias yang ditentukan dalam asosiasi
+      },
+    ],
   });
   return data;
 };

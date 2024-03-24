@@ -25,6 +25,21 @@ const getAllAssetsRepository = (reqPagination, search, filter) => {
   return data;
 };
 
+const uniqueBrandsRepository = Assets.findAll({
+  attributes: ["brand"], // Pilih kolom brand saja
+  group: ["brand"], // Kelompokkan berdasarkan kolom brand
+});
+
+const uniqueUserRepository = User.findAll({
+  attributes: ["id", "userName"], // Pilih kolom brand saja
+  group: ["id", "userName"], // Kelompokkan berdasarkan kolom brand
+});
+
+const uniqueNameRepository = Assets.findAll({
+  attributes: ["name"], // Pilih kolom brand saja
+  group: ["name"], // Kelompokkan berdasarkan kolom brand
+});
+
 const getAssetsByPkRepository = (id) => {
   return Assets.findByPk(id, {
     include: [
@@ -54,4 +69,7 @@ module.exports = {
   getAssetsByPkRepository,
   createAssetsRepository,
   updateAssetsRepository,
+  uniqueBrandsRepository,
+  uniqueNameRepository,
+  uniqueUserRepository,
 };
