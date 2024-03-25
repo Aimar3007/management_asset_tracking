@@ -1,69 +1,60 @@
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'store'
 import {
-    AMMetaSelector,
-    assetManagementDataSelector,
+    MUDataSelector,
+    MUMetaSelector,
     filterSelector,
     payloadSelector,
     setData,
     setFilter,
     setPageNumber,
     setPayload,
-} from './asset-management.slice'
+} from './manage-user.slice'
+import { IMUFileterOptions, IUMFilter } from './manage-user.interface'
 import { useFormik } from 'formik'
-import { useAppDispatch } from 'store'
-import { useEffect, useState } from 'react'
+import { IUserPayload } from 'repository/interface/user.interface'
 import {
-    createAsset,
-    getAssetsData,
-    getDAMfilter,
-} from 'repository/asset-management.repository'
-import {
-    IAssetManagement,
-    IAssetManagementPayload,
-    IDAMFilter,
-} from 'repository/interface/asset-management-data.interface'
-import { useNavigate } from 'react-router-dom'
-import { IResponseData } from 'common/common.interface'
-import {
-    IAMFileterOptions,
-    IAssetManagementFilter,
-} from './asset-management.interface'
+    createUser,
+    getAllUser,
+    getDMUfilter,
+} from 'repository/user.repository'
+import AddUserModal from './components/add-user-modal.component'
 import { useModal } from 'components/modal/modal.service'
-import AddAssetModal from './component/add-asset-modal.component'
 import {
-    IFAssetManagement,
-    createAssetInitial,
-    createAssetValidation,
-} from 'validations/asset-management.validation'
+    IFUser,
+    createUserInitial,
+    createUserValidation,
+} from 'validations/user.validation'
 import { Toast } from 'components/toast/toast.component'
 
-const useAssetManagement = () => {
+const useManageUser = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     // selector
     const filter = useSelector(filterSelector)
     const payload = useSelector(payloadSelector)
-    const AMData = useSelector(assetManagementDataSelector)
-    const AMMeta = useSelector(AMMetaSelector)
+    const MUData = useSelector(MUDataSelector)
+    const MUMeta = useSelector(MUMetaSelector)
 
     // state
     const [loading, setLoading] = useState<boolean>(false)
-    const [filterOptions, setFilterOptions] = useState<IAMFileterOptions>()
+    const [filterOptions, setFilterOptions] = useState<IMUFileterOptions>()
+    const [selectedRole, setSelectedRole] = useState<string | null>(null)
     const [handlingLoadData, setHandlingLoadData] = useState<boolean>(false)
 
     // modal
-    const AAMService = useModal()
+    const AMUMService = useModal()
 
     const formik = useFormik<{ searchTerm: string }>({
         initialValues: { searchTerm: '' },
         onSubmit: (value) => {
             if (value?.searchTerm.length >= 3) {
-                dispatch(
-                    setPayload({ ...payload, description: value.searchTerm }),
-                )
+                dispatch(setPayload({ ...payload, userName: value.searchTerm }))
             } else if (value.searchTerm.length <= 0)
-                dispatch(setPayload({ ...payload, description: '' }))
+                dispatch(setPayload({ ...payload, userName: '' }))
         },
         validate: (values) => {
             const errors: any = {}
@@ -77,41 +68,36 @@ const useAssetManagement = () => {
         },
     })
 
-    const createAssetFormik = useFormik<IFAssetManagement>({
-        validationSchema: createAssetValidation,
-        initialValues: createAssetInitial,
+    const createUserFormik = useFormik<IFUser>({
+        validationSchema: createUserValidation,
+        initialValues: createUserInitial,
         onSubmit: (values) => {
             submit({ data: values })
-            AAMService.closeModalHandling()
+            AMUMService.closeModalHandling()
         },
     })
 
     useEffect(() => {
         loadData()
-    }, [payload])
+    }, [payload, handlingLoadData])
 
     useEffect(() => {
         loadFilterOptions()
     }, [])
 
-    const setValueFilter = (data: IAssetManagementFilter) => {
+    const setValueFilter = (data: IUMFilter) => {
         dispatch(setFilter(data))
         const setData = {
-            userId: data?.user?.value,
-            brand: data?.brand?.value,
-            name: data?.name?.value,
-        }
-        dispatch(
-            setPayload({ ...payload, ...(setData as IAssetManagementPayload) }),
-        )
+            city: data?.city?.value,
+            deletedAt: data?.status?.value,
+        } as IUserPayload
+        dispatch(setPayload({ ...payload, ...setData }))
     }
 
     const loadData = async () => {
         try {
             setLoading(true)
-            const actionResult = (await getAssetsData(
-                payload,
-            )) as IResponseData<IAssetManagement[]>
+            const actionResult = await getAllUser(payload)
             dispatch(setData(actionResult))
             setLoading(false)
         } catch (e) {
@@ -123,14 +109,12 @@ const useAssetManagement = () => {
 
     const loadFilterOptions = async () => {
         try {
-            const getDropdownOptions =
-                (await getDAMfilter()) as IResponseData<IDAMFilter>
+            const getDropdownOptions = await getDMUfilter()
 
-            const { brand, name, user } = getDropdownOptions.data
+            const { user, city } = getDropdownOptions.data
 
             const setData = {
-                brands: brand?.map((x) => ({ label: x.brand, value: x.brand })),
-                names: name?.map((x) => ({ label: x.name, value: x.name })),
+                city: city?.map((x) => ({ label: x.city, value: x.city })),
                 users: user?.map((x) => ({ label: x.userName, value: x.id })),
             }
 
@@ -145,12 +129,12 @@ const useAssetManagement = () => {
         dispatch(setPageNumber(pageNumber))
     }
 
-    const submit = async ({ data }: { data: IFAssetManagement }) => {
+    const submit = async ({ data }: { data: IFUser }) => {
         try {
-            await createAsset(data)
+            await createUser(data)
             Toast({
                 header: 'Sucess',
-                message: `Success create asset`,
+                message: `Success create user`,
                 type: 'success',
             })
             setHandlingLoadData(!handlingLoadData)
@@ -158,7 +142,7 @@ const useAssetManagement = () => {
             console.log(e)
             const errorMessage = e.message
             Toast({
-                header: 'Failed Create Asset',
+                header: 'Failed Create Aser',
                 message: errorMessage,
                 type: 'error',
             })
@@ -167,10 +151,11 @@ const useAssetManagement = () => {
 
     const allModal = (
         <>
-            <AddAssetModal
-                modalService={AAMService}
-                formik={createAssetFormik}
-                userOptions={filterOptions?.users}
+            <AddUserModal
+                modalService={AMUMService}
+                formik={createUserFormik}
+                selectedRole={selectedRole}
+                setSelectedRole={setSelectedRole}
             />
         </>
     )
@@ -179,15 +164,15 @@ const useAssetManagement = () => {
         filter,
         formik,
         loading,
-        AMData,
-        AMMeta,
         filterOptions,
+        MUData,
+        MUMeta,
         allModal,
-        AAMService,
+        AMUMService,
         setValueFilter,
         setPageData,
         navigate,
     }
 }
 
-export default useAssetManagement
+export default useManageUser

@@ -3,6 +3,7 @@ const {
   getAllTransactionAssetsService,
   createTransactionAssetService,
   updateTransactionAssetService,
+  getDropdownTransactionAssetService,
 } = require("../services/transactionAssetsService");
 
 const getAllTransactionAsset = async (req, res) => {
@@ -53,8 +54,24 @@ const updateTransactionAsset = async (req, res) => {
   }
 };
 
+const getDropdownTransactionAsset = async (req, res) => {
+  try {
+    const getData = await getDropdownTransactionAssetService();
+    const response = {
+      data: getData,
+      isSuccess: true,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
+  }
+};
+
 module.exports = {
   getAllTransactionAsset,
   createTransactionAsset,
   updateTransactionAsset,
+  getDropdownTransactionAsset,
 };

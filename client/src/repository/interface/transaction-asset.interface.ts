@@ -47,8 +47,17 @@ export interface IUpdateTransactionAssetPayload {
     userId?: number
     assetId?: number
     typeTransactionAssetId?: number
-    statusTransactionAssetId?:number
+    statusTransactionAssetId?: number
     reasonRequest?: string
     reasonReject?: string
     deletedAt?: string
+}
+
+export interface IDTAFilter {
+    user: {
+        id: number
+        userName: string
+    }[],
+    typeTransactionAsset: ITransactionType[]
+    statusTransactionAsset: ITransactionType[]
 }

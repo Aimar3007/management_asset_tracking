@@ -4,6 +4,7 @@ const {
   createUserService,
   getUserByIdService,
   updateUserService,
+  getDropdownUserService,
 } = require("../services/userService");
 
 const getAllUsers = async (req, res) => {
@@ -78,4 +79,26 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, createUser, getCurrentUser, getUsersByPk, updateUser };
+const getDropdownUser = async (req, res) => {
+  try {
+    const getData = await getDropdownUserService();
+    const response = {
+      data: getData,
+      isSuccess: true,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response = { message: "Internal server error", isSuccess: false };
+    res.status(500).json(response);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  createUser,
+  getCurrentUser,
+  getUsersByPk,
+  updateUser,
+  getDropdownUser,
+};

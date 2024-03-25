@@ -1,64 +1,34 @@
 import Dropdown from 'components/dropdown/dropdown.component'
-import { AMHeader, assetNameOptions } from './asset-management.static'
-import useAssetManagement from './asset-management.service'
+import useRequsetAsset from './requset-asset.service'
+import { IDropdownItem } from 'components/dropdown/dropdown.interface'
 import { FormikProvider } from 'formik'
 import Tooltip from 'components/tooltip/tooltip.component'
 import FormInput from 'components/form-input/form-input.component'
-import { IDropdownItem } from 'components/dropdown/dropdown.interface'
-import { IAssetManagement } from 'repository/interface/asset-management-data.interface'
+import { ITransactionAsset } from 'repository/interface/transaction-asset.interface'
 import Table from 'components/table/table.component'
-import Button from 'components/button/button.component'
+import { TAHeaders } from './requset-asset.static'
 
-const AssetManagement = () => {
+const RequestAsset = () => {
     const {
         filter,
         formik,
-        AMData,
         loading,
-        AMMeta,
         filterOptions,
+        RAData,
+        RAMeta,
         allModal,
-        AAMService,
+        actionComponent,
         setValueFilter,
         setPageData,
-        navigate,
-    } = useAssetManagement()
+    } = useRequsetAsset()
 
     return (
         <div className="container-global content-full-height flex">
             <div className="flex flex-grow flex-col w-[calc(100vw-20rem)] sm:w-[calc(100vw-4rem)]">
                 <div className="flex gap-x-40 p-3">
-                    <div className="flex flex-initial gap-x-3 w-[50%]">
+                    <div className="flex flex-initial gap-x-3 w-[40%]">
                         <Dropdown
-                            options={assetNameOptions}
-                            label="Name"
-                            onClick={(value) => {
-                                setValueFilter({
-                                    ...filter,
-                                    name: value as IDropdownItem,
-                                })
-                            }}
-                            value={filter?.name}
-                            dropDownIndicator={true}
-                            isClearable={true}
-                            isSearchable={true}
-                        />
-                        <Dropdown
-                            options={filterOptions?.brands}
-                            label="Brand"
-                            onClick={(value) => {
-                                setValueFilter({
-                                    ...filter,
-                                    brand: value as IDropdownItem,
-                                })
-                            }}
-                            value={filter?.brand}
-                            dropDownIndicator={true}
-                            isClearable={true}
-                            isSearchable={true}
-                        />
-                        <Dropdown
-                            options={filterOptions?.users}
+                            options={filterOptions?.user}
                             label="User"
                             onClick={(value) => {
                                 setValueFilter({
@@ -66,7 +36,37 @@ const AssetManagement = () => {
                                     user: value as IDropdownItem,
                                 })
                             }}
-                            value={filter.user}
+                            value={filter?.user}
+                            dropDownIndicator={true}
+                            isClearable={true}
+                            isSearchable={true}
+                        />
+                        <Dropdown
+                            options={filterOptions?.typeTransactionAsset}
+                            label="Type"
+                            onClick={(value) => {
+                                setValueFilter({
+                                    ...filter,
+                                    typeTransactionAsset:
+                                        value as IDropdownItem,
+                                })
+                            }}
+                            value={filter?.typeTransactionAsset}
+                            dropDownIndicator={true}
+                            isClearable={true}
+                            isSearchable={true}
+                        />
+                        <Dropdown
+                            options={filterOptions?.statusTransactionAsset}
+                            label="Status"
+                            onClick={(value) => {
+                                setValueFilter({
+                                    ...filter,
+                                    statusTransactionAsset:
+                                        value as IDropdownItem,
+                                })
+                            }}
+                            value={filter?.statusTransactionAsset}
                             dropDownIndicator={true}
                             isClearable={true}
                             isSearchable={true}
@@ -93,7 +93,7 @@ const AssetManagement = () => {
                                     <FormInput
                                         autoComplete="auto-off"
                                         hideError={true}
-                                        placeholder="Search description Asset"
+                                        placeholder="Search username"
                                         parentDivClassName="w-full min-w-[250px] !mb-0"
                                         icon="ri-search-line"
                                         name="searchTerm"
@@ -113,14 +113,6 @@ const AssetManagement = () => {
                                 </Tooltip>
                             </form>
                         </FormikProvider>
-                        <Button
-                            onClick={() => {
-                                AAMService.openModalHandling()
-                            }}
-                            icon="ri-add-line"
-                            className={`pb-1 ml-2 w-btnIconWidth !border-transparent`}
-                            variant="logistical-white"
-                        />
                     </div>
                 </div>
 
@@ -128,9 +120,9 @@ const AssetManagement = () => {
                 <div className="border-b border-solid border-logistical-gray-ver3"></div>
 
                 {/* table */}
-                <Table<IAssetManagement>
-                    headers={AMHeader}
-                    data={AMData}
+                <Table<ITransactionAsset>
+                    headers={TAHeaders}
+                    data={RAData}
                     loading={loading}
                     nextHandling={(page) => {
                         setPageData(page)
@@ -138,12 +130,11 @@ const AssetManagement = () => {
                     previousHandling={(page) => {
                         setPageData(page)
                     }}
-                    meta={AMMeta}
-                    moduleTitle={'Asset Management'}
-                    onRowClick={function (data): void {
-                        const id = data.id
-                        navigate('/asset-management-detail/' + id)
+                    meta={RAMeta}
+                    moduleTitle={'Request Asset'}
+                    onRowClick={function (): void {
                     }}
+                    actionComponent={actionComponent}
                 />
             </div>
             {allModal}
@@ -151,4 +142,4 @@ const AssetManagement = () => {
     )
 }
 
-export default AssetManagement
+export default RequestAsset

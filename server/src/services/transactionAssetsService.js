@@ -2,7 +2,10 @@ const {
   getAllTransactionAssetsRepository,
   createTransactionAssetsRepository,
   updateTransactionAssetsRepository,
+  getAlltypeTransactionAsset,
+  getAllStatusTransactionAssets,
 } = require("../repositories/transactionAssetsRepository");
+const { uniqueUserRepository } = require("../repositories/userRepository");
 
 const getAllTransactionAssetsService = async (req) => {
   const page = parseInt(req.body.page);
@@ -25,7 +28,6 @@ const getAllTransactionAssetsService = async (req) => {
     limit,
     offset: (page - 1) * limit,
   };
-
 
   const getData = await getAllTransactionAssetsRepository(
     reqPagination,
@@ -57,7 +59,7 @@ const updateTransactionAssetService = async (req) => {
     reasonRequest: req.body.reasonRequest,
     reasonReject: req.body.reasonReject,
     typeTransactionAssetId: req.body.typeTransactionAssetId,
-    statusTransactionId: req.body.statusTransactionId,
+    statusTransactionAssetId: req.body.statusTransactionAssetId,
     updatedAt: new Date(),
     deletedAt: req.body.deletedAt,
   };
@@ -67,11 +69,26 @@ const updateTransactionAssetService = async (req) => {
     Object.entries(data).filter(([_, value]) => value && value)
   );
 
+  console.log("data", data);
+
   return updateTransactionAssetsRepository(id, data);
+};
+
+const getDropdownTransactionAssetService = async () => {
+  const user = await uniqueUserRepository;
+  const typeTransactionAsset = await getAlltypeTransactionAsset;
+  const statusTransactionAsset = await getAllStatusTransactionAssets;
+  const dataDropdown = {
+    user,
+    typeTransactionAsset,
+    statusTransactionAsset,
+  };
+  return dataDropdown;
 };
 
 module.exports = {
   getAllTransactionAssetsService,
   createTransactionAssetService,
   updateTransactionAssetService,
+  getDropdownTransactionAssetService,
 };

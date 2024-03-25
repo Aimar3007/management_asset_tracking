@@ -19,3 +19,4 @@ export const forgotPasswordValidations = YUP.object().shape({
         .email('Email should be formatted i.e. mail@onebyone.io')
         .required(`Email ${commonErrorMessage}`),
 } as Record<keyof IForgotPassword, any>)
+

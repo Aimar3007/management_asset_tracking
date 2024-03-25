@@ -1,72 +1,57 @@
-import Dropdown from 'components/dropdown/dropdown.component'
-import { AMHeader, assetNameOptions } from './asset-management.static'
-import useAssetManagement from './asset-management.service'
 import { FormikProvider } from 'formik'
+import useManageUser from './manage-user.service'
+import Dropdown from 'components/dropdown/dropdown.component'
+import { UMHeaders, userStatus } from './manage-user.static'
+import { IDropdownItem } from 'components/dropdown/dropdown.interface'
 import Tooltip from 'components/tooltip/tooltip.component'
 import FormInput from 'components/form-input/form-input.component'
-import { IDropdownItem } from 'components/dropdown/dropdown.interface'
-import { IAssetManagement } from 'repository/interface/asset-management-data.interface'
 import Table from 'components/table/table.component'
+import { IUser } from 'repository/interface/user.interface'
 import Button from 'components/button/button.component'
 
-const AssetManagement = () => {
+const ManageUser = () => {
     const {
         filter,
         formik,
-        AMData,
+        MUData,
         loading,
-        AMMeta,
+        MUMeta,
         filterOptions,
         allModal,
-        AAMService,
+        AMUMService,
         setValueFilter,
         setPageData,
         navigate,
-    } = useAssetManagement()
-
+    } = useManageUser()
     return (
         <div className="container-global content-full-height flex">
             <div className="flex flex-grow flex-col w-[calc(100vw-20rem)] sm:w-[calc(100vw-4rem)]">
                 <div className="flex gap-x-40 p-3">
-                    <div className="flex flex-initial gap-x-3 w-[50%]">
+                    <div className="flex flex-initial gap-x-3 w-[40%]">
                         <Dropdown
-                            options={assetNameOptions}
-                            label="Name"
+                            options={filterOptions?.city}
+                            label="City"
                             onClick={(value) => {
                                 setValueFilter({
                                     ...filter,
-                                    name: value as IDropdownItem,
+                                    city: value as IDropdownItem,
                                 })
                             }}
-                            value={filter?.name}
+                            value={filter?.city}
                             dropDownIndicator={true}
                             isClearable={true}
                             isSearchable={true}
                         />
                         <Dropdown
-                            options={filterOptions?.brands}
-                            label="Brand"
+                            options={userStatus}
+                            label="Status"
                             onClick={(value) => {
                                 setValueFilter({
                                     ...filter,
-                                    brand: value as IDropdownItem,
+                                    status: value as IDropdownItem,
                                 })
                             }}
-                            value={filter?.brand}
-                            dropDownIndicator={true}
-                            isClearable={true}
-                            isSearchable={true}
-                        />
-                        <Dropdown
-                            options={filterOptions?.users}
-                            label="User"
-                            onClick={(value) => {
-                                setValueFilter({
-                                    ...filter,
-                                    user: value as IDropdownItem,
-                                })
-                            }}
-                            value={filter.user}
+                            value={filter?.status}
                             dropDownIndicator={true}
                             isClearable={true}
                             isSearchable={true}
@@ -93,7 +78,7 @@ const AssetManagement = () => {
                                     <FormInput
                                         autoComplete="auto-off"
                                         hideError={true}
-                                        placeholder="Search description Asset"
+                                        placeholder="Search username"
                                         parentDivClassName="w-full min-w-[250px] !mb-0"
                                         icon="ri-search-line"
                                         name="searchTerm"
@@ -115,7 +100,7 @@ const AssetManagement = () => {
                         </FormikProvider>
                         <Button
                             onClick={() => {
-                                AAMService.openModalHandling()
+                                AMUMService.openModalHandling()
                             }}
                             icon="ri-add-line"
                             className={`pb-1 ml-2 w-btnIconWidth !border-transparent`}
@@ -128,9 +113,9 @@ const AssetManagement = () => {
                 <div className="border-b border-solid border-logistical-gray-ver3"></div>
 
                 {/* table */}
-                <Table<IAssetManagement>
-                    headers={AMHeader}
-                    data={AMData}
+                <Table<IUser>
+                    headers={UMHeaders}
+                    data={MUData}
                     loading={loading}
                     nextHandling={(page) => {
                         setPageData(page)
@@ -138,11 +123,11 @@ const AssetManagement = () => {
                     previousHandling={(page) => {
                         setPageData(page)
                     }}
-                    meta={AMMeta}
-                    moduleTitle={'Asset Management'}
+                    meta={MUMeta}
+                    moduleTitle={'Manage User'}
                     onRowClick={function (data): void {
                         const id = data.id
-                        navigate('/asset-management-detail/' + id)
+                        navigate('/manage-user-detail/' + id)
                     }}
                 />
             </div>
@@ -151,4 +136,4 @@ const AssetManagement = () => {
     )
 }
 
-export default AssetManagement
+export default ManageUser

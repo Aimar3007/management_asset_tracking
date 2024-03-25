@@ -5,8 +5,8 @@ const {
   updateAssetsRepository,
   uniqueBrandsRepository,
   uniqueNameRepository,
-  uniqueUserRepository,
 } = require("../repositories/assetsRepository");
+const { uniqueUserRepository } = require("../repositories/userRepository");
 
 const getAllAssetsService = async (req) => {
   const page = parseInt(req.body.page);

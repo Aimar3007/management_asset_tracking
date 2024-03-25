@@ -1,7 +1,53 @@
+import { IDropdownItem } from 'components/dropdown/dropdown.interface'
 import { ISTColumn } from 'components/simple-table/simple-table.interface'
 import { ITableColumn } from 'components/table/table.interface'
 import { ITransactionAsset } from 'repository/interface/transaction-asset.interface'
 import { IUser } from 'repository/interface/user.interface'
+
+export const UMHeaders: ITableColumn<IUser>[] = [
+    {
+        accessor: 'userName',
+        label: 'Username',
+    },
+    {
+        accessor: 'email',
+        label: 'Email',
+    },
+    {
+        accessor: 'deletedAt',
+        label: 'Status',
+        customBuild: (data) => <>{data ? 'Suspended' : 'Active'}</>,
+    },
+    {
+        accessor: 'position',
+        label: 'Position',
+    },
+    {
+        accessor: 'city',
+        label: 'Base on',
+    },
+    {
+        accessor: 'roleId',
+        label: 'Role Access',
+        customBuild: (data, rowData) => <div>{rowData?.role?.type}</div>,
+    },
+]
+
+export const userStatus: IDropdownItem[] = [
+    {
+        value: 0,
+        label: 'Active',
+    },
+    {
+        value: 1,
+        label: 'Suspended',
+    },
+]
+
+export const roleOptions: IDropdownItem[] = [
+    { label: 'Admin', value: 1 },
+    { label: 'Regular', value: 2 },
+]
 
 // segment detail
 export const MUDetailHeader: ITableColumn<IUser>[] = [
@@ -74,24 +120,4 @@ export const TAHeaders: ISTColumn<ITransactionAsset>[] = [
             <div>{rowData?.asset?.dateOfUse}</div>
         ),
     },
-    // {
-    //     accessor: 'assetId',
-    //     label: 'Action',
-    //     // customBuild: (data, func, y, z, rowData) => (
-    //     //     <div className="flex gap-x-2">
-    //     //         <Button
-    //     //             onClick={() => {}}
-    //     //             icon="ri-edit-2-line"
-    //     //             className={`!p-0 !w-full !h-[1.8rem]`}
-    //     //             variant="logistical-lightblue-invert"
-    //     //         />
-    //     //         <Button
-    //     //             onClick={() => {}}
-    //     //             icon="ri-list-check"
-    //     //             className={`!p-0 !w-full !h-[1.8rem]`}
-    //     //             variant="logistical-lightblue-invert"
-    //     //         />
-    //     //     </div>
-    //     // ),
-    // },
 ]

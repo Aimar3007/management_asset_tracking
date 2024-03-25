@@ -24,6 +24,8 @@ export interface ITable<T = {}> extends IPagination {
     onRowClick?: (data: T) => void
     onTableFilter?: (filter: ITableFilter) => void
     containerClassname?: string
+
+    actionComponent?: (data: T) => JSX.Element
 }
 
 // export interface IUseTable<T>

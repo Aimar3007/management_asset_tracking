@@ -6,6 +6,7 @@ import {
 } from './interface/asset-management-data.interface'
 import { IResponseData } from 'common/common.interface'
 import { endpoints } from 'common/common.static'
+import { IFAssetManagement } from 'validations/asset-management.validation'
 
 export const getAssetsData = async (payload: IAssetManagementPayload) => {
     try {
@@ -33,7 +34,7 @@ export const getDAMfilter = async () => {
         return response
     } catch (error: any) {
         console.error(error)
-        const err = error as IResponseData<IDAMFilter[]>
+        const err = error as IResponseData<IDAMFilter>
         err.isSuccess = false
         return err
     }
@@ -48,6 +49,21 @@ export const getADData = async (id: string) => {
     } catch (error: any) {
         console.error(error)
         const err = error as IResponseData<IAssetManagement>
+        err.isSuccess = false
+        return err
+    }
+}
+
+export const createAsset = async (payload: IFAssetManagement) => {
+    try {
+        const response = await post<IResponseData<any>, IFAssetManagement>({
+            endpoint: `${endpoints.AM_create}`,
+            payload,
+        })
+        return response
+    } catch (error: any) {
+        console.error(error)
+        const err = error as IResponseData<any>
         err.isSuccess = false
         return err
     }

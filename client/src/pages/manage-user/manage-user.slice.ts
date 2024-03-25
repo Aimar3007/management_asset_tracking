@@ -1,13 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IMeta, IResponseData } from 'common/common.interface'
 import { ITransactionAsset } from 'repository/interface/transaction-asset.interface'
-import { IUser } from 'repository/interface/user.interface'
+import { IUser, IUserPayload } from 'repository/interface/user.interface'
 import { RootState } from 'store'
+import { IUMFilter } from './manage-user.interface'
 
 interface IMUSlice {
     data: IUser[]
-    // payload: IAssetManagementPayload
-    // filter: IAssetManagementFilter
+    payload: IUserPayload
+    filter: IUMFilter
     meta: IMeta
 
     // segment details
@@ -26,6 +27,16 @@ const initialState: IMUSlice = {
         totalItems: 0,
         indexEnd: 0,
         indexStart: 0,
+    },
+    payload: {
+        page: 1,
+        record: 50,
+        deletedAt: 2
+    },
+    filter: {
+        status: { label: '', value: '' },
+        city: { label: '', value: '' },
+        userName: '',
     },
 
     // segment detail
@@ -69,28 +80,28 @@ const manageUserSlice = createSlice({
                 ...d,
             }
         },
-        // setFilter(state, action: PayloadAction<IAssetManagementFilter>) {
-        //     const filter = action.payload
-        //     return {
-        //         ...state,
-        //         filter,
-        //     }
-        // },
-        // setPayload(state, action: PayloadAction<IAssetManagementPayload>) {
-        //     const payload = action.payload
-        //     return {
-        //         ...state,
-        //         payload,
-        //     }
-        // },
-        // setPageNumber(state, action: PayloadAction<number>) {
-        //     const page = action.payload
-        //     const payload = { ...state.payload, page }
-        //     return {
-        //         ...state,
-        //         payload,
-        //     }
-        // },
+        setFilter(state, action: PayloadAction<IUMFilter>) {
+            const filter = action.payload
+            return {
+                ...state,
+                filter,
+            }
+        },
+        setPayload(state, action: PayloadAction<IUserPayload>) {
+            const payload = action.payload
+            return {
+                ...state,
+                payload,
+            }
+        },
+        setPageNumber(state, action: PayloadAction<number>) {
+            const page = action.payload
+            const payload = { ...state.payload, page }
+            return {
+                ...state,
+                payload,
+            }
+        },
 
         // segment details
         setDataDetail(state, action: PayloadAction<IResponseData<IUser>>) {
@@ -116,10 +127,10 @@ const manageUserSlice = createSlice({
 
 // these all the variables used for selector
 export const MUDataSelector = (state: RootState) => state.manageUser.data || {}
-// export const filterSelector = (state: RootState) =>
-//     state.manageUser.filter || {}
-// export const payloadSelector = (state: RootState) =>
-//     state.manageUser.payload || {}
+export const filterSelector = (state: RootState) =>
+    state.manageUser.filter || {}
+export const payloadSelector = (state: RootState) =>
+    state.manageUser.payload || {}
 export const MUMetaSelector = (state: RootState) => state.manageUser.meta || {}
 
 //segment detail
@@ -131,7 +142,14 @@ export const TAMetaSelector = (state: RootState) =>
     state.manageUser.TAMeta || {}
 
 // all actions
-export const { setData, setDataDetail, setTAData } = manageUserSlice.actions
+export const {
+    setData,
+    setDataDetail,
+    setFilter,
+    setPayload,
+    setPageNumber,
+    setTAData,
+} = manageUserSlice.actions
 
 // Reducer
 export default manageUserSlice.reducer

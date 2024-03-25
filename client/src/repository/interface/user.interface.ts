@@ -22,6 +22,18 @@ export interface IUserPayload {
     page: number
     record: number
     userName?: string
-    status?: string
+    deletedAt?: number
     city?: string
+}
+
+export interface IDMUFilter {
+    city: { city: string }[]
+    user: { id: number; userName: string }[]
+}
+
+export interface IUpdateUserPayload {
+    id: number
+    userName?: string
+    deletedAt?: Date | null
+    email?: string
 }

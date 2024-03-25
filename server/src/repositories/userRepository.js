@@ -1,16 +1,31 @@
 const { Op } = require("sequelize");
 const { User, Role } = require("../models");
 
-const getAllUserRepository = (reqPagination, search, filter) => {
+const getAllUserRepository = (reqPagination, search, deletedAt, filter) => {
+  let whereCondition = {
+    ...(search && {
+      userName: { [Op.substring]: search },
+    }),
+    ...(filter && filter),
+  };
+
+  // Jika deletedAt === 1, tampilkan data dimana deletedAt !== null
+  if (deletedAt === 1) {
+    whereCondition.deletedAt = {
+      [Op.ne]: null,
+    };
+  }
+  // Jika deletedAt === 0, tampilkan data dimana deletedAt === null
+  else if (deletedAt === 0) {
+    whereCondition.deletedAt = {
+      [Op.eq]: null,
+    };
+  }
+
   const data = User.findAndCountAll({
     offset: reqPagination.start,
     limit: reqPagination.limit,
-    where: {
-      ...(search && {
-        userName: { [Op.substring]: search },
-      }),
-      ...(filter && filter),
-    },
+    where: whereCondition,
     include: [
       {
         model: Role,
@@ -57,10 +72,22 @@ const updateDataRepository = async (id, data) => {
   return updateData;
 };
 
+const uniqueUserRepository = User.findAll({
+  attributes: ["id", "userName"], // Pilih kolom brand saja
+  group: ["id", "userName"], // Kelompokkan berdasarkan kolom brand
+});
+
+const uniqueCityRepository = User.findAll({
+  attributes: ["city"], // Pilih kolom brand saja
+  group: ["city"], // Kelompokkan berdasarkan kolom brand
+});
+
 module.exports = {
   getAllUserRepository,
   createUserRepository,
   findUserByEmailRepository,
   getUserByIdRepository,
   updateDataRepository,
+  uniqueUserRepository,
+  uniqueCityRepository,
 };

@@ -2,6 +2,8 @@ import AMDetail from 'pages/asset-management/asset-management-detail/asset-manag
 import { IRoute } from '../common/common.interface'
 import AssetManagement from 'pages/asset-management/asset-management.component'
 import ManageUserDetail from 'pages/manage-user/manage-user-detail/manage-user-detail.component'
+import ManageUser from 'pages/manage-user/manage-user.component'
+import RequestAsset from 'pages/requset-asset/request-asset.component'
 
 // const version = process.env.REACT_APP_API_URL_VERSION
 
@@ -13,16 +15,20 @@ export const endpoints = {
     asset_management_getAll: 'assets',
     AM_getDetail: 'assets/details/',
     AM_getDropdown: 'assets/dropdown-options',
+    AM_create: 'assets/crete',
 
     // transaction asset
     TA_getAll: 'transaction-assets',
     TA_createTA: 'transaction-assets/crete',
+    TA_getDropdown: 'transaction-assets/dropdown-options',
 
     // user
     login: 'auth',
     user_currentUser: 'user/current-user',
     user_getAll: 'user',
     user_getDetail: 'user/details/',
+    MU_getDropdown: 'user/dropdown-options',
+    user_create: 'user/create',
 }
 
 export const commonErrorMessage: string = 'must be entered'
@@ -66,6 +72,30 @@ export const routes: IRoute[] = [
     {
         path: '/profile/:id',
         text: 'Profile',
+        Content: ManageUserDetail,
+        client: ['logistical', 'jpl'],
+    },
+    {
+        path: '/request-asset',
+        text: 'Request Asset',
+        Content: RequestAsset,
+        show: true,
+        icon: 'ri-dashboard-line',
+        client: ['logistical', 'jpl'],
+        parentId: '2',
+    },
+    {
+        path: '/manage-user',
+        text: 'User Management',
+        Content: ManageUser,
+        show: true,
+        icon: 'ri-dashboard-line',
+        client: ['logistical', 'jpl'],
+        parentId: '3',
+    },
+    {
+        path: '/manage-user-detail/:id',
+        text: 'User Management Detail',
         Content: ManageUserDetail,
         client: ['logistical', 'jpl'],
     },

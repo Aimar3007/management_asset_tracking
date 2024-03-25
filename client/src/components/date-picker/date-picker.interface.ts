@@ -12,8 +12,8 @@ export interface IDatePicker {
     onClear?: () => void
     disable?: boolean
     isRange: boolean
-    setRange?: React.Dispatch<React.SetStateAction<DateRange | undefined>>
-    range?: DateRange | undefined
+    setRange?: any
+    range?: any
     iconPosition?: 'left' | 'right'
     disableDays?: 'future' | 'past'
 }

@@ -1,11 +1,12 @@
 import { IResponseData } from 'common/common.interface'
 import {
     ICrateTransactionAssetpayload,
+    IDTAFilter,
     IGetTransactionAssetPayload,
     ITransactionAsset,
     IUpdateTransactionAssetPayload,
 } from './interface/transaction-asset.interface'
-import { post, put } from 'common/common.service'
+import { fetch, post, put } from 'common/common.service'
 import { endpoints } from 'common/common.static'
 
 export const getTransactionAsset = async (
@@ -63,6 +64,20 @@ export const updateTransactionAsset = async (
     } catch (error: any) {
         console.error(error)
         const err = error as IResponseData<ITransactionAsset>
+        err.isSuccess = false
+        return err
+    }
+}
+
+export const getTAfilter = async () => {
+    try {
+        const response = await fetch<IResponseData<IDTAFilter>, null>({
+            endpoint: endpoints.TA_getDropdown,
+        })
+        return response
+    } catch (error: any) {
+        console.error(error)
+        const err = error as IResponseData<IDTAFilter>
         err.isSuccess = false
         return err
     }

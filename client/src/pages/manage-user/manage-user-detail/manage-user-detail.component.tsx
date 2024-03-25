@@ -13,16 +13,26 @@ const ManageUserDetail = () => {
         loadingTAData,
         TAMeta,
         AllModal,
+        session,
+        CSUMService,
+        id,
         actionTTAData,
         navigate,
     } = useMUDetail()
+
+    const labelButton = MUDData?.deletedAt ? 'Unsuspend User' : 'Suspend User'
+    const variantButton = MUDData?.deletedAt ? 'primary' : 'danger'
+
     return (
         <div className="flex gap-x-5">
-            <div className="flex-initial w-[20%] bg-white">
+            <div className="flex-initial w-[25%] bg-white">
                 <div className="p-4">
                     <img src={unknownImg} alt="" />
                     <div className="font-bold text-size-XL">Aimar Penanda</div>
                     <div className="grid grid-cols-1 gap-3 mt-2">
+                        {session.role === 'admin' && (
+                            <>{MUDData.deletedAt ? 'Suspend' : 'Active'}</>
+                        )}
                         {MUDetailHeader.map((header) => (
                             <div className="">
                                 <div className="font-bold">{header.label}</div>
@@ -40,15 +50,25 @@ const ManageUserDetail = () => {
 
                 {/* border */}
                 <div className="border-b border-solid border-logistical-gray-ver3"></div>
-                <div className="p-4">
+                <div className="p-4 flex gap-x-2">
                     <Button
                         label="Back"
-                        className="w-[15rem]"
+                        className="!w-[12rem]"
                         variant="primary"
                         onClick={() => {
                             navigate(-1)
                         }}
                     />
+                    {session.role === 'admin' && session.id != id && (
+                        <Button
+                            label={labelButton}
+                            className="w-[15rem]"
+                            variant={variantButton}
+                            onClick={() => {
+                                CSUMService.openModalHandling()
+                            }}
+                        />
+                    )}
                 </div>
             </div>
 

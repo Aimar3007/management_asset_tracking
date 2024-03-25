@@ -65,8 +65,14 @@ const updateTransactionAssetsRepository = async (id, data) => {
   return finData.update(data);
 };
 
+const getAlltypeTransactionAsset = TypeTransactionAsset.findAll();
+
+const getAllStatusTransactionAssets = StatusTransactionAssets.findAll();
+
 module.exports = {
   getAllTransactionAssetsRepository,
   updateTransactionAssetsRepository,
   createTransactionAssetsRepository,
+  getAlltypeTransactionAsset,
+  getAllStatusTransactionAssets,
 };

@@ -30,11 +30,6 @@ const uniqueBrandsRepository = Assets.findAll({
   group: ["brand"], // Kelompokkan berdasarkan kolom brand
 });
 
-const uniqueUserRepository = User.findAll({
-  attributes: ["id", "userName"], // Pilih kolom brand saja
-  group: ["id", "userName"], // Kelompokkan berdasarkan kolom brand
-});
-
 const uniqueNameRepository = Assets.findAll({
   attributes: ["name"], // Pilih kolom brand saja
   group: ["name"], // Kelompokkan berdasarkan kolom brand
@@ -71,5 +66,4 @@ module.exports = {
   updateAssetsRepository,
   uniqueBrandsRepository,
   uniqueNameRepository,
-  uniqueUserRepository,
 };

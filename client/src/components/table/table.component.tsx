@@ -45,6 +45,11 @@ function Table<T>({ ...props }: ITable<T>) {
                                             </th>
                                         )
                                     })}
+                                    {props.actionComponent && (
+                                        <th className={`th-master`}>
+                                            <div>Action</div>
+                                        </th>
+                                    )}
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,6 +110,12 @@ function Table<T>({ ...props }: ITable<T>) {
                                                     </td>
                                                 )
                                             })}
+
+                                            {props.actionComponent && (
+                                                <td>
+                                                    {props.actionComponent(row)}
+                                                </td>
+                                            )}
                                         </tr>
                                     )
                                 })}

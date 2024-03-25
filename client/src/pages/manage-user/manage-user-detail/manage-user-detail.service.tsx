@@ -10,7 +10,7 @@ import {
 } from '../manage-user.slice'
 import { Toast } from 'components/toast/toast.component'
 import { useEffect, useState } from 'react'
-import { getUserDetail } from 'repository/user.repository'
+import { getUserDetail, updateUser } from 'repository/user.repository'
 import {
     getTransactionAsset,
     updateTransactionAsset,
@@ -18,6 +18,10 @@ import {
 import TADModal from '../components/transaction-asset-detail-modal.component'
 import { useModal } from 'components/modal/modal.service'
 import { IUpdateTransactionAssetPayload } from 'repository/interface/transaction-asset.interface'
+import { IUserAuth } from 'repository/interface/user-auth.interface'
+import { userDataSelector as sessionSelector } from 'pages/login/login.slice'
+import ChangeStatusUserModal from '../components/suspend-user-modal.component'
+import { IUpdateUserPayload } from 'repository/interface/user.interface'
 
 const useMUDetail = () => {
     // initial
@@ -26,6 +30,7 @@ const useMUDetail = () => {
     const navigate = useNavigate()
 
     // selector
+    const session: IUserAuth = useSelector(sessionSelector)
     const MUDData = useSelector(MUDDataSelector)
     const TAData = useSelector(TADataSelector)
     const TAMeta = useSelector(TAMetaSelector)
@@ -33,6 +38,7 @@ const useMUDetail = () => {
     // state
     const [loadingDetailData, setLoadingDetailData] = useState<boolean>(true)
     const [loadingTAData, setLoadingTAData] = useState<boolean>(true)
+    const [handlingLoadData, setHandlingLoadData] = useState<boolean>(false)
     const [TADAction, setTADAction] = useState<{ id: number; action: string }>({
         id: 0,
         action: '',
@@ -40,12 +46,13 @@ const useMUDetail = () => {
 
     // modal
     const TADMService = useModal()
+    const CSUMService = useModal()
 
     useEffect(() => {
         if (!id) return
         loadDetailData()
         loadTAData()
-    }, [id])
+    }, [id, handlingLoadData])
 
     const loadDetailData = async () => {
         try {
@@ -145,6 +152,30 @@ const useMUDetail = () => {
         setTADAction({ id: id as number, action })
     }
 
+    const changeStatususer = async () => {
+        const payload: IUpdateUserPayload = {
+            id: Number(id),
+            deletedAt: !MUDData?.deletedAt ? new Date() : null,
+        }
+        try {
+            await updateUser(payload)
+            Toast({
+                header: 'Sucess',
+                message: `Success ${!payload?.deletedAt ? 'suspend' : 'unsuspend'} user`,
+                type: 'success',
+            })
+            setHandlingLoadData(!handlingLoadData)
+        } catch (e: any) {
+            console.log(e)
+            const errorMessage = e.message
+            Toast({
+                header: 'Failed Update User',
+                message: errorMessage,
+                type: 'error',
+            })
+        }
+    }
+
     const AllModal = (
         <>
             <TADModal
@@ -152,6 +183,11 @@ const useMUDetail = () => {
                 onSubmit={updateTA}
                 data={TAData?.filter((data) => data.id === TADAction?.id)[0]}
                 action={TADAction?.action}
+            />
+            <ChangeStatusUserModal
+                modalService={CSUMService}
+                data={MUDData}
+                onSubmit={changeStatususer}
             />
         </>
     )
@@ -163,6 +199,9 @@ const useMUDetail = () => {
         TAData,
         TAMeta,
         AllModal,
+        session,
+        CSUMService,
+        id,
         actionTTAData,
         navigate,
     }

@@ -3,6 +3,8 @@ const {
   createUserRepository,
   getUserByIdRepository,
   updateDataRepository,
+  uniqueCityRepository,
+  uniqueUserRepository,
 } = require("../repositories/userRepository");
 const bcrypt = require("bcrypt");
 
@@ -16,7 +18,6 @@ const getAllUserService = async (req) => {
   };
 
   let filter = {
-    status: req.body.status,
     city: req.body.city,
   };
 
@@ -26,13 +27,29 @@ const getAllUserService = async (req) => {
   );
 
   const search = req.body.userName;
-  const getData = await getAllUserRepository(reqPagination, search, filter);
+  const deletedAt = parseInt(req.body.deletedAt);
+  const getData = await getAllUserRepository(
+    reqPagination,
+    search,
+    deletedAt,
+    filter
+  );
   const response = { ...getData, reqPagination };
   return response;
 };
 
 const getUserByIdService = async (id) => {
   return getUserByIdRepository(id);
+};
+
+const getDropdownUserService = async () => {
+  const user = await uniqueUserRepository;
+  const city = await uniqueCityRepository;
+  const dataDropdown = {
+    user,
+    city,
+  };
+  return dataDropdown;
 };
 
 const createUserService = async (req) => {
@@ -47,7 +64,6 @@ const updateUserService = async (req) => {
   let data = {
     userName: req.body.userName,
     email: req.body.email,
-    deletedAt: req.body.deletedAt,
   };
 
   // Remove key-value pairs with empty values
@@ -55,7 +71,10 @@ const updateUserService = async (req) => {
     Object.entries(data).filter(([_, value]) => value && value)
   );
 
-  return updateDataRepository(id, data);
+  const deletedAt = req.body.deletedAt;
+  const newData = { ...data, deletedAt };
+
+  return updateDataRepository(id, newData);
 };
 
 module.exports = {
@@ -63,4 +82,5 @@ module.exports = {
   createUserService,
   getUserByIdService,
   updateUserService,
+  getDropdownUserService,
 };
